@@ -56,10 +56,9 @@ body {
   border-radius: 2px;
   background: linear-gradient(180deg, var(--era-ai), var(--era-llm) 55%, var(--era-agent));
 }
-/* Era sub-headings: large, colored section dividers that clearly outrank event titles. */
+/* Era sub-headings: large, colored section headers that clearly outrank event titles. */
 .era-band { font: 800 17px/1.2 var(--sans); letter-spacing: .02em; text-transform: uppercase;
-  margin: 44px 0 20px; padding-bottom: 9px; border-bottom: 1px solid var(--line-soft);
-  display: flex; align-items: center; gap: 10px; }
+  margin: 40px 0 16px; display: flex; align-items: center; gap: 10px; }
 .era-band::before { content: ""; width: 12px; height: 12px; border-radius: 3px;
   background: currentColor; box-shadow: 0 0 12px currentColor; flex-shrink: 0; }
 .era-band:first-child { margin-top: 4px; }

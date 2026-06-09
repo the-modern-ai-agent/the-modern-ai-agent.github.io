@@ -27,14 +27,14 @@ const DIAGRAMS = {
     <line x1="46" y1="22" x2="72" y2="22" stroke="#9fb0c6"/><polygon points="72,18 72,26 78,22" fill="#9fb0c6"/>
     <line x1="116" y1="22" x2="142" y2="22" stroke="#9fb0c6"/><polygon points="142,18 142,26 148,22" fill="#9fb0c6"/></svg>
     samples → reward model → policy update`,
-  react: `<svg width="190" height="56" role="img" aria-label="reason-act-observe loop">
-    <rect x="10" y="8" width="48" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
-    <rect x="130" y="8" width="48" height="16" rx="3" fill="#241b40" stroke="#b39dff"/>
-    <rect x="70" y="34" width="50" height="16" rx="3" fill="#10261a" stroke="#7dffb0"/>
-    <line x1="58" y1="16" x2="128" y2="16" stroke="#9fb0c6"/><polygon points="128,12 128,20 134,16" fill="#9fb0c6"/>
-    <line x1="150" y1="24" x2="110" y2="36" stroke="#9fb0c6"/><polygon points="112,32 108,40 118,39" fill="#9fb0c6"/>
-    <line x1="78" y1="42" x2="34" y2="26" stroke="#9fb0c6"/><polygon points="36,30 30,22 28,33" fill="#9fb0c6"/></svg>
-    thought → action → observation → …`,
+  react: `<svg width="214" height="58" role="img" aria-label="reason-act-observe loop">
+    <rect x="6" y="10" width="52" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
+    <rect x="78" y="10" width="52" height="16" rx="3" fill="#241b40" stroke="#b39dff"/>
+    <rect x="150" y="10" width="58" height="16" rx="3" fill="#10261a" stroke="#7dffb0"/>
+    <line x1="58" y1="18" x2="74" y2="18" stroke="#9fb0c6"/><polygon points="74,14 74,22 80,18" fill="#9fb0c6"/>
+    <line x1="130" y1="18" x2="146" y2="18" stroke="#9fb0c6"/><polygon points="146,14 146,22 152,18" fill="#9fb0c6"/>
+    <path d="M179 26 C179 47 32 47 32 28" fill="none" stroke="#9fb0c6"/><polygon points="32,25 28,33 36,33" fill="#9fb0c6"/></svg>
+    thought → action → observation → loop`,
   backprop: `<svg width="200" height="54" role="img" aria-label="backpropagation">
     <rect x="8" y="18" width="32" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
     <rect x="70" y="18" width="32" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
@@ -51,11 +51,11 @@ const DIAGRAMS = {
     <text x="120" y="50" font-size="9" fill="#7dffb0">Discriminator</text></svg>
     generator vs. discriminator, adversarial game`,
   resnet: `<svg width="200" height="56" role="img" aria-label="residual skip connection">
-    <rect x="20" y="22" width="40" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
-    <rect x="92" y="22" width="40" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
-    <line x1="60" y1="30" x2="90" y2="30" stroke="#9fb0c6"/><polygon points="90,26 90,34 96,30" fill="#9fb0c6"/>
-    <path d="M20 22 Q76 2 132 22" fill="none" stroke="#7dffb0"/><polygon points="132,22 126,18 128,26" fill="#7dffb0"/>
-    <text x="150" y="32" font-size="9" fill="#7dffb0">+ skip</text></svg>
+    <rect x="20" y="28" width="40" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
+    <rect x="92" y="28" width="40" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
+    <line x1="60" y1="36" x2="90" y2="36" stroke="#9fb0c6"/><polygon points="90,32 90,40 96,36" fill="#9fb0c6"/>
+    <path d="M40 28 Q76 6 112 28" fill="none" stroke="#7dffb0"/><polygon points="112,29 108,21 116,21" fill="#7dffb0"/>
+    <text x="138" y="40" font-size="9" fill="#7dffb0">+ skip</text></svg>
     identity shortcut lets gradients skip layers`,
   rag: `<svg width="210" height="50" role="img" aria-label="retrieval-augmented generation">
     <rect x="6" y="16" width="40" height="18" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
@@ -94,8 +94,7 @@ const DIAGRAMS = {
     <line x1="56" y1="29" x2="118" y2="11" stroke="#9fb0c6"/>
     <line x1="56" y1="29" x2="118" y2="31" stroke="#9fb0c6"/>
     <line x1="56" y1="29" x2="118" y2="51" stroke="#9fb0c6"/>
-    <text x="10" y="15" font-size="8" fill="#b39dff">client</text>
-    <text x="124" y="35" font-size="8" fill="#7dffb0">tool / data servers</text></svg>
+    <text x="10" y="15" font-size="8" fill="#b39dff">client</text></svg>
     one protocol, many tool & data servers`,
   reasoning: `<svg width="210" height="48" role="img" aria-label="inference-time reasoning">
     <rect x="6" y="16" width="30" height="16" rx="3" fill="#1b2740" stroke="#7ee0ff"/>
