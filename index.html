@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI → LLM → Agent · A Timeline</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="title-block">
+      <h1>From Machines that Think to Agents that Act</h1>
+      <p class="tagline">Seven decades of AI, the papers that bent the curve — <span class="era-ai">classic AI</span> → <span class="era-llm">language models</span> → <span class="era-agent">agents</span>.</p>
+    </div>
+    <div class="view-toggle" role="group" aria-label="View density">
+      <button id="toggle-brief" class="toggle-btn is-active" data-view="brief" aria-pressed="true">Recap</button>
+      <button id="toggle-detailed" class="toggle-btn" data-view="detailed" aria-pressed="false">Detailed</button>
+    </div>
+  </header>
+
+  <main class="timeline">
+    <section id="spine" class="spine" aria-label="Timeline events"></section>
+    <aside id="detail" class="detail" aria-live="polite">
+      <div class="detail-empty">
+        <p class="detail-empty-icon">◷</p>
+        <p>Hover an event to preview it.<br/>Click to pin the full story here.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>A best-effort timeline. Links point to primary papers where they exist, official announcements otherwise.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
