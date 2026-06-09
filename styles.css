@@ -136,6 +136,9 @@ body {
   .detail-card.revealing, .detail-card.revealing > * { animation: none; }
 }
 
+.load-error { color: var(--ink-dim); font-size: 14px; line-height: 1.6; max-width: 46ch; }
+.load-error code { font-family: var(--mono); color: var(--era-ai); }
+
 @media (max-width: 760px) {
   .timeline { grid-template-columns: 1fr; }
   .detail { position: static; order: 2; }

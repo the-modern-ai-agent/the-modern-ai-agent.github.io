@@ -98,12 +98,12 @@ function renderSpine() {
       <div class="event-inline" hidden></div>`;
     wireHover(el, n);
     el.addEventListener('click', () => pin(n.id, n));
-    el.addEventListener('keydown', (e) => { if (e.key === 'Enter') pin(n.id, n); });
+    el.addEventListener('keydown', (e) => { if (e.key === 'Enter') pin(n.id, n, true); });
     spine.appendChild(el);
   }
 }
 
-function renderDetail(n) {
+function renderDetail(n, focusPanel) {
   const panel = document.getElementById('detail');
   const members = (n.memberIds ?? [])
     .map(id => DB.byId.get(id)).filter(Boolean)
@@ -112,7 +112,7 @@ function renderDetail(n) {
   panel.innerHTML = `
     <article class="detail-card revealing" style="--c: var(--era-${n.era})">
       <div class="d-era">${ERA_LABEL[n.era]} · ${yearText(n)}</div>
-      <h2>${n.title}</h2>
+      <h2 tabindex="-1">${n.title}</h2>
       <div class="d-meta">${n.authors ?? ''}</div>
       <p class="d-long">${n.long}</p>
       ${n.diagram ? `<div class="d-diagram">${DIAGRAMS[n.diagram] ?? ''}</div>` : ''}
@@ -122,12 +122,15 @@ function renderDetail(n) {
     </article>`;
   const card = panel.querySelector('.detail-card');
   card.addEventListener('animationend', () => card.classList.remove('revealing'), { once: true });
+  // Move focus into the panel only for keyboard-initiated pins, so mouse users
+  // aren't yanked away from the spine.
+  if (focusPanel) card.querySelector('h2').focus();
 }
 
-function pin(id, n) {
+function pin(id, n, focusPanel) {
   pinnedId = id;
   document.querySelectorAll('.event').forEach(e => e.classList.toggle('is-pinned', e.dataset.id === id));
-  renderDetail(n);
+  renderDetail(n, focusPanel);
 }
 
 function resetDetail() {
@@ -150,25 +153,35 @@ function setView(next) {
   localStorage.setItem('timeline-view', view);
   syncToggle();
   const spine = document.getElementById('spine');
+  // If a spine item had focus, the re-render below destroys it; remember to restore.
+  const hadSpineFocus = document.activeElement?.classList?.contains('event');
   spine.style.transition = 'opacity .18s ease';
   spine.style.opacity = '0';
   setTimeout(() => {
     renderSpine();
     const pinnedEl = document.querySelector(`.event[data-id="${pinnedId}"]`);
     if (pinnedEl) pinnedEl.classList.add('is-pinned');
-    else { pinnedId = null; resetDetail(); }
+    else if (pinnedId !== null) { pinnedId = null; resetDetail(); }
+    if (hadSpineFocus) (pinnedEl ?? spine.querySelector('.event'))?.focus();
     spine.style.opacity = '1';
   }, 180);
 }
 
 async function init() {
-  const res = await fetch('data.json');
-  const data = await res.json();
-  DB.events = data.events;
-  DB.brief = data.brief;
-  DB.byId = new Map(data.events.map(e => [e.id, e]));
-  syncToggle();
-  renderSpine();
+  try {
+    const res = await fetch('data.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    DB.events = data.events;
+    DB.brief = data.brief;
+    DB.byId = new Map(data.events.map(e => [e.id, e]));
+    syncToggle();
+    renderSpine();
+  } catch (err) {
+    document.getElementById('spine').innerHTML =
+      `<p class="load-error">Couldn't load the timeline data (${err.message}).<br/>
+       Serve this folder over http — e.g. <code>python3 -m http.server</code> — rather than opening the file directly.</p>`;
+  }
 }
 
 document.querySelectorAll('.toggle-btn').forEach(b =>
