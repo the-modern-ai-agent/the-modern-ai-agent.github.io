@@ -12,14 +12,33 @@ python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
+## Views & controls
+
+- **Recap ⇄ Detailed** (top-right): Recap shows ~18 grouped milestones; Detailed shows every event.
+- **Type filters** (`All / Papers / Models / Products`): shown in Detailed view only; `type` is per-event.
+- **Hover** an event for a short summary; **click** to pin the full panel (long summary, optional diagram/image, impact, source link).
+
 ## Add or edit an event
 
-All content lives in `data.json`:
+All content lives in `data.json`. Each `events[]` object has:
 
-- Add an object to `events[]` (see the field list at the top of any entry).
-- `era` must be one of `"ai" | "llm" | "agent"` (drives the color).
-- To surface it in the Recap view, either add `{ "ref": "<id>" }` to `brief[]`
-  or include its `id` in a group's `memberIds`.
+- `id`, `year` (int) — or `yearLabel` (string range) for brief groups.
+- `era`: `"ai" | "llm" | "agent"` (drives the color).
+- `type`: `"paper" | "model" | "product"` (drives the filters).
+- `short` (one-line hover), `long` (3–4 sentence panel summary), `impact` (one line), `authors`, `link {label,url}`.
+- `diagram` (optional): one of the allowed keys defined in `DIAGRAMS` in `app.js`
+  (`attention, perceptron, rlhf, react, backprop, gan, resnet, rag, moe, cot, mcp, reasoning`), else `null`.
+- `image` (optional): `{ "src": "assets/<file>", "alt": "...", "credit": "..." }`.
+
+To surface an event in Recap, add `{ "ref": "<id>" }` to `brief[]` or include its `id` in a group's `memberIds`.
+
+### Adding a visual
+
+- **Diagram:** add a new inline SVG under `DIAGRAMS` in `app.js`, then set `"diagram": "<key>"` on the event
+  and add the key to the validator's allowed list.
+- **Image:** drop a file in `assets/` and reference it via the `image` field. The committed images are
+  hand-authored SVGs (no licensing concerns). If you add raster figures/photos/screenshots, make sure you have
+  the right to redistribute them and set a `credit`.
 
 Validate before committing:
 

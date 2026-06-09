@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 230" role="img" aria-label="Stylized ChatGPT conversation interface">
+  <rect width="600" height="230" rx="14" fill="#0a0f17"/>
+  <text x="28" y="38" font-family="ui-monospace, monospace" font-size="13" fill="#b39dff" letter-spacing="2">CHATGPT · NOV 2022</text>
+  <!-- window -->
+  <rect x="28" y="54" width="544" height="150" rx="10" fill="#0f1726" stroke="#263247"/>
+  <circle cx="48" cy="72" r="4" fill="#ff6b6b"/><circle cx="62" cy="72" r="4" fill="#ffd166"/><circle cx="76" cy="72" r="4" fill="#7dffb0"/>
+  <line x1="28" y1="86" x2="572" y2="86" stroke="#263247"/>
+  <!-- user bubble -->
+  <g transform="translate(300,100)" font-family="-apple-system, system-ui, sans-serif" font-size="12">
+    <rect width="252" height="34" rx="9" fill="#1d2740"/>
+    <text x="16" y="22" fill="#cddcef">Explain RLHF like I'm five.</text>
+  </g>
+  <!-- assistant bubble -->
+  <g transform="translate(48,146)" font-family="-apple-system, system-ui, sans-serif" font-size="12">
+    <rect width="320" height="44" rx="9" fill="#16223a" stroke="#2d3c56"/>
+    <circle cx="18" cy="22" r="9" fill="#10261a" stroke="#7dffb0"/>
+    <path d="M14 22 l3 3 l6 -7" fill="none" stroke="#7dffb0" stroke-width="1.5"/>
+    <text x="36" y="19" fill="#e6edf6">A helper learns from people picking</text>
+    <text x="36" y="35" fill="#9fb0c6">the better answer, over and over.</text>
+  </g>
+  <!-- typing dots -->
+  <g transform="translate(48,206)" fill="#7f93ac"><circle cx="0" cy="-4" r="3"/><circle cx="12" cy="-4" r="3"/><circle cx="24" cy="-4" r="3"/></g>
+</svg>

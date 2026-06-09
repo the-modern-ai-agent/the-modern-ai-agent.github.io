@@ -56,9 +56,13 @@ body {
   border-radius: 2px;
   background: linear-gradient(180deg, var(--era-ai), var(--era-llm) 55%, var(--era-agent));
 }
-.era-band { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
-  color: var(--ink-faint); margin: 26px 0 14px; padding-left: 2px; }
-.era-band:first-child { margin-top: 0; }
+/* Era sub-headings: large, colored section dividers that clearly outrank event titles. */
+.era-band { font: 800 17px/1.2 var(--sans); letter-spacing: .02em; text-transform: uppercase;
+  margin: 44px 0 20px; padding-bottom: 9px; border-bottom: 1px solid var(--line-soft);
+  display: flex; align-items: center; gap: 10px; }
+.era-band::before { content: ""; width: 12px; height: 12px; border-radius: 3px;
+  background: currentColor; box-shadow: 0 0 12px currentColor; flex-shrink: 0; }
+.era-band:first-child { margin-top: 4px; }
 
 .event { position: relative; margin: 0 0 12px; cursor: pointer; }
 .event-dot {
@@ -138,6 +142,24 @@ body {
 
 .load-error { color: var(--ink-dim); font-size: 14px; line-height: 1.6; max-width: 46ch; }
 .load-error code { font-family: var(--mono); color: var(--era-ai); }
+
+/* Type filter bar (Detailed view only) */
+.filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 4px clamp(16px, 5vw, 64px) 0; }
+.filters[hidden] { display: none; }
+.filter-label { font: 600 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-faint); margin-right: 4px; }
+.filter-btn { appearance: none; border: 1px solid var(--line); background: var(--panel);
+  color: var(--ink-dim); font: 600 12px/1 var(--sans); padding: 7px 14px; border-radius: 999px;
+  cursor: pointer; transition: color .15s, background .15s, border-color .15s; }
+.filter-btn:hover { color: var(--ink); border-color: #3a4a63; }
+.filter-btn.is-active { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+
+/* Local images in the detail panel */
+.detail-card .d-image { margin: 0 0 14px; }
+.detail-card .d-image img { width: 100%; height: auto; display: block;
+  border-radius: 10px; border: 1px solid var(--line); }
+.detail-card .d-image figcaption { font: 10px/1.4 var(--mono); color: var(--ink-faint); margin-top: 6px; }
 
 @media (max-width: 760px) {
   .timeline { grid-template-columns: 1fr; }

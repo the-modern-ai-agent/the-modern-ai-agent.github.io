@@ -102,6 +102,7 @@
       "long": "AlexNet is a deep convolutional network trained on GPUs using ReLU activations, dropout, and data augmentation that won the 2012 ImageNet competition by a wide margin over hand-engineered approaches. Its decisive result convinced the field that deep learning scaled with data and compute. The work showed that GPUs made training large networks practical, reshaping the hardware of AI research. It is widely credited with launching the modern deep-learning era.",
       "impact": "Triggered the modern deep-learning era in computer vision.",
       "diagram": null,
+      "image": { "src": "assets/alexnet-imagenet.svg", "alt": "AlexNet classifying an ImageNet photo into top-5 labels", "credit": "Schematic illustration" },
       "link": { "label": "NeurIPS 2012", "url": "https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html" }
     },
     {
@@ -414,6 +415,7 @@
       "long": "ChatGPT packaged an instruction-tuned, RLHF-aligned GPT model into a free, easy-to-use conversational interface released in November 2022. Its accessibility and surprising versatility drove some of the fastest user adoption ever seen for a software product. It brought large language models out of research and into everyday public use. The launch catalyzed the generative-AI boom and an industry-wide race to ship competing assistants.",
       "impact": "Brought LLMs to a mass audience and catalyzed the generative-AI boom.",
       "diagram": null,
+      "image": { "src": "assets/chatgpt-launch.svg", "alt": "Stylized ChatGPT conversation with a user question and assistant reply", "credit": "Schematic illustration" },
       "link": { "label": "OpenAI", "url": "https://openai.com/index/chatgpt/" }
     },
     {
