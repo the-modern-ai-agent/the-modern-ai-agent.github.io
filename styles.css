@@ -70,3 +70,68 @@ body {
 .event:hover .event-title, .event:focus-visible .event-title { color: #fff; }
 .event-count { font: 500 10px/1 var(--mono); color: var(--ink-faint); margin-left: 6px; }
 .event:focus-visible { outline: none; }
+
+/* ── Block A: hover inline-expand + dot flair ── */
+.event:hover .event-dot, .event:focus-visible .event-dot {
+  background: var(--c); box-shadow: 0 0 0 4px var(--bg), 0 0 12px var(--c);
+  transform: scale(1.15);
+}
+.event-inline { overflow: hidden; max-height: 0; opacity: 0;
+  transition: max-height .22s ease, opacity .22s ease, margin .22s ease; margin-top: 0; }
+.event-inline[hidden] { display: block; } /* animate instead of snap */
+.event.is-open .event-inline { max-height: 180px; opacity: 1; margin-top: 8px; }
+.inline-card {
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-left: 3px solid var(--c); border-radius: 9px; padding: 9px 12px;
+  font-size: 12px; line-height: 1.5; color: var(--ink-dim);
+}
+.inline-card .it { font: 600 9px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c); display: block; margin-bottom: 3px; }
+.inline-card .hint { color: var(--ink-faint); }
+@media (prefers-reduced-motion: reduce) {
+  .event-inline { transition: none; }
+}
+
+/* ── Block B: pinned detail panel + opening reveal + diagrams ── */
+.detail { position: sticky; top: 120px; }
+.detail-empty { border: 1px dashed var(--line); border-radius: 14px; padding: 40px 24px;
+  text-align: center; color: var(--ink-faint); }
+.detail-empty-icon { font-size: 28px; margin: 0 0 10px; opacity: .6; }
+
+.detail-card {
+  background: var(--panel); border: 1px solid var(--line);
+  border-left: 3px solid var(--c); border-radius: 14px; padding: 22px 22px 24px;
+  transform-origin: top center;
+}
+.detail-card.revealing { animation: cardOpen .26s cubic-bezier(.2,.7,.3,1); }
+@keyframes cardOpen {
+  from { opacity: 0; transform: scaleY(.96) translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+.detail-card .d-era { font: 600 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--c); }
+.detail-card h2 { margin: 6px 0 2px; font-size: 21px; color: #fff; }
+.detail-card .d-meta { font: 11px/1.4 var(--mono); color: var(--ink-faint); margin-bottom: 14px; }
+.detail-card .d-long { font-size: 13.5px; line-height: 1.65; color: #c4d2e4; margin: 0 0 14px; }
+.detail-card .d-diagram { background: #0a0f17; border: 1px dashed var(--line); border-radius: 10px;
+  padding: 14px; margin: 0 0 14px; text-align: center; font: 10px/1.4 var(--mono); color: var(--ink-faint); }
+.detail-card .d-diagram svg { display: block; margin: 0 auto 6px; }
+.detail-card .d-impact { background: rgba(125,255,176,.06); border-left: 2px solid var(--era-agent);
+  border-radius: 7px; padding: 9px 12px; font-size: 12px; color: #a9e8c4; margin: 0 0 14px; }
+.detail-card .d-members { list-style: none; padding: 0; margin: 0 0 14px; }
+.detail-card .d-members li { font-size: 12px; padding: 4px 0; border-top: 1px solid var(--line-soft); }
+.detail-card .d-members .my { font-family: var(--mono); color: var(--ink-faint); margin-right: 8px; }
+.detail-card .d-members a { color: var(--ink-dim); text-decoration: none; }
+.detail-card .d-members a:hover { color: var(--ink); text-decoration: underline; }
+.detail-card .d-link { display: inline-block; font: 600 12px/1 var(--sans); color: var(--bg);
+  background: var(--c); border-radius: 7px; padding: 9px 14px; text-decoration: none; }
+.detail-card.revealing > * { animation: blockIn .3s both; }
+.detail-card.revealing > *:nth-child(1){animation-delay:.02s}
+.detail-card.revealing > *:nth-child(2){animation-delay:.05s}
+.detail-card.revealing > *:nth-child(3){animation-delay:.09s}
+.detail-card.revealing > *:nth-child(4){animation-delay:.13s}
+.detail-card.revealing > *:nth-child(5){animation-delay:.17s}
+.detail-card.revealing > *:nth-child(6){animation-delay:.21s}
+@keyframes blockIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.event.is-pinned .event-dot { background: var(--c); box-shadow: 0 0 0 4px var(--bg), 0 0 14px var(--c); }
+@media (prefers-reduced-motion: reduce) {
+  .detail-card.revealing, .detail-card.revealing > * { animation: none; }
+}
