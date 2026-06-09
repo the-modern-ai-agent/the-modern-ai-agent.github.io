@@ -1,7 +1,9 @@
 import { readFile } from 'node:fs/promises';
 
 const ERAS = new Set(['ai', 'llm', 'agent']);
-const REQUIRED = ['id', 'era', 'title', 'short', 'long', 'impact', 'link'];
+const TYPES = new Set(['paper', 'model', 'product']);
+const DIAGRAMS = new Set(['attention', 'perceptron', 'rlhf', 'react', 'backprop', 'gan', 'resnet', 'rag', 'moe', 'cot', 'mcp', 'reasoning']);
+const REQUIRED = ['id', 'era', 'type', 'title', 'short', 'long', 'impact', 'link'];
 
 const raw = await readFile(new URL('../data.json', import.meta.url), 'utf8');
 let data;
@@ -22,6 +24,8 @@ for (const ev of events) {
     if (ev[f] == null || ev[f] === '') errors.push(`event "${ev.id ?? '?'}" missing "${f}"`);
   }
   if (!ERAS.has(ev.era)) errors.push(`event "${ev.id}" has bad era "${ev.era}"`);
+  if (!TYPES.has(ev.type)) errors.push(`event "${ev.id}" has bad type "${ev.type}"`);
+  if (ev.diagram != null && !DIAGRAMS.has(ev.diagram)) errors.push(`event "${ev.id}" has bad diagram "${ev.diagram}"`);
   if (ev.year == null && ev.yearLabel == null) errors.push(`event "${ev.id}" needs year or yearLabel`);
   if (!ev.link?.url || !ev.link?.label) errors.push(`event "${ev.id}" link needs {label,url}`);
   if (ids.has(ev.id)) errors.push(`duplicate event id "${ev.id}"`);
@@ -36,6 +40,7 @@ for (const b of brief) {
     for (const f of ['id', 'era', 'title', 'short', 'long', 'impact', 'link']) {
       if (b[f] == null || b[f] === '') errors.push(`brief group "${b.id ?? '?'}" missing "${f}"`);
     }
+    if (b.diagram != null && !DIAGRAMS.has(b.diagram)) errors.push(`brief group "${b.id}" has bad diagram "${b.diagram}"`);
     for (const m of b.memberIds ?? []) {
       if (!ids.has(m)) errors.push(`brief group "${b.id}" memberId "${m}" has no matching event`);
     }
