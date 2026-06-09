@@ -135,3 +135,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .detail-card.revealing, .detail-card.revealing > * { animation: none; }
 }
+
+@media (max-width: 760px) {
+  .timeline { grid-template-columns: 1fr; }
+  .detail { position: static; order: 2; }
+  .detail:empty { display: none; }
+  .site-header { flex-direction: column; gap: 14px; }
+}

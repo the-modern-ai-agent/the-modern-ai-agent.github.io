@@ -82,7 +82,7 @@
       "long": "LSTM introduces a memory cell guarded by input, output, and forget gates that regulate information flow, letting gradients persist across many time steps. This addressed the vanishing-gradient problem that had crippled earlier recurrent networks on long sequences.",
       "impact": "Became the dominant sequence model for over a decade before Transformers.",
       "diagram": null,
-      "link": { "label": "Neural Computation (PDF)", "url": "https://www.bioinf.jku.at/publications/older/2604.pdf" }
+      "link": { "label": "Neural Computation (MIT Press)", "url": "https://direct.mit.edu/neco/article-abstract/9/8/1735/6109/Long-Short-Term-Memory" }
     },
     {
       "id": "alexnet-2012",
