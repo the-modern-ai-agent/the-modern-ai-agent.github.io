@@ -115,6 +115,57 @@ const TYPES = [
   { key: 'product', label: 'Products' },
 ];
 
+// Acronyms / initialisms that may appear in a long summary, with their expansions.
+// Only terms actually present in a given summary get annotated.
+const GLOSSARY = {
+  AI: 'Artificial intelligence',
+  LLM: 'Large language model',
+  RLHF: 'Reinforcement learning from human feedback',
+  RL: 'Reinforcement learning',
+  SFT: 'Supervised fine-tuning',
+  GPU: 'Graphics processing unit',
+  CNN: 'Convolutional neural network',
+  RNN: 'Recurrent neural network',
+  LSTM: 'Long short-term memory',
+  GAN: 'Generative adversarial network',
+  NLP: 'Natural language processing',
+  API: 'Application programming interface',
+  MoE: 'Mixture of experts',
+  RAG: 'Retrieval-augmented generation',
+  DPO: 'Direct preference optimization',
+  LoRA: 'Low-rank adaptation',
+  CoT: 'Chain-of-thought reasoning',
+  MCP: 'Model Context Protocol',
+  A2A: 'Agent2Agent — an agent-to-agent protocol',
+  GUI: 'Graphical user interface',
+  IDE: 'Integrated development environment',
+  SDK: 'Software development kit',
+  QA: 'Question answering',
+  STEM: 'Science, technology, engineering and mathematics',
+  ReLU: 'Rectified linear unit',
+  GPT: 'Generative pre-trained transformer',
+  BERT: 'Bidirectional encoder representations from transformers',
+  T5: 'Text-to-text transfer transformer',
+  MIT: 'Massachusetts Institute of Technology',
+};
+
+// Wrap the FIRST occurrence of each glossary term in a tooltip. Resets per call,
+// so the same term is re-annotated in a different summary but only once within one.
+function annotateAcronyms(text) {
+  const terms = Object.keys(GLOSSARY).sort((a, b) => b.length - a.length);
+  const esc = t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  // \b … s? \b  matches the term (+ optional plural); (?![\w-]) skips hyphenated
+  // forms like "GPT-4" so we don't wrap a fragment of a model name.
+  const re = new RegExp('\\b(' + terms.map(esc).join('|') + ')s?\\b(?![\\w-])', 'g');
+  const seen = new Set();
+  return text.replace(re, (m, term) => {
+    if (!GLOSSARY[term] || seen.has(term)) return m;
+    seen.add(term);
+    const tip = GLOSSARY[term].replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    return `<abbr class="gloss" tabindex="0" data-tip="${tip}" aria-label="${term}: ${tip}">${m}</abbr>`;
+  });
+}
+
 let DB = { events: [], brief: [], byId: new Map() };
 let view = localStorage.getItem('timeline-view') || 'brief';
 let typeFilter = 'all';
@@ -196,7 +247,7 @@ function renderDetail(n, focusPanel) {
       <div class="d-era">${ERA_LABEL[n.era]} · ${yearText(n)}</div>
       <h2 tabindex="-1">${n.title}</h2>
       <div class="d-meta">${n.authors ?? ''}</div>
-      <p class="d-long">${n.long}</p>
+      <p class="d-long">${annotateAcronyms(n.long)}</p>
       ${n.diagram ? `<div class="d-diagram">${DIAGRAMS[n.diagram] ?? ''}</div>` : ''}
       ${n.image ? `<figure class="d-image"><img src="${n.image.src}" alt="${n.image.alt ?? ''}" loading="lazy"/>${n.image.credit ? `<figcaption>${n.image.credit}</figcaption>` : ''}</figure>` : ''}
       <div class="d-impact">▸ ${n.impact}</div>

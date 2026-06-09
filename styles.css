@@ -154,6 +154,25 @@ body {
 .filter-btn:hover { color: var(--ink); border-color: #3a4a63; }
 .filter-btn.is-active { color: var(--bg); background: var(--ink); border-color: var(--ink); }
 
+/* Acronym tooltips in the click summary */
+.gloss { text-decoration: none; border-bottom: 1px dotted var(--ink-faint);
+  cursor: help; position: relative; font-style: normal; }
+.gloss:hover, .gloss:focus-visible { border-bottom-color: var(--c, var(--era-llm)); outline: none; }
+.gloss::after {
+  content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 9px);
+  transform: translateX(-50%) translateY(4px);
+  background: #18223a; color: var(--ink); border: 1px solid var(--c, var(--line));
+  border-radius: 9px; padding: 7px 11px; font: 500 11.5px/1.45 var(--sans);
+  white-space: normal; width: max-content; max-width: 230px; text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.55); opacity: 0; pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease; z-index: 30; }
+.gloss::before {
+  content: ""; position: absolute; left: 50%; bottom: calc(100% + 3px);
+  transform: translateX(-50%); border: 6px solid transparent;
+  border-top-color: var(--c, var(--line)); opacity: 0; transition: opacity .15s ease; z-index: 30; }
+.gloss:hover::after, .gloss:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.gloss:hover::before, .gloss:focus-visible::before { opacity: 1; }
+
 /* Local images in the detail panel */
 .detail-card .d-image { margin: 0 0 14px; }
 .detail-card .d-image img { width: 100%; height: auto; display: block;
