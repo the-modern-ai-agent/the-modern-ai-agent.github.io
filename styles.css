@@ -243,7 +243,12 @@ body {
 .editorial em { font-style: normal; font-weight: 600; color: var(--ink); }
 
 /* ── By Year (horizontal) view ── */
-.years { padding: 18px clamp(16px, 5vw, 64px) 56px; }
+/* Page is a flex column so the chart can be anchored to the bottom while the
+   click-summary panel sits at the top-left, above the timeline. */
+body.years-page { display: flex; flex-direction: column; min-height: 100vh; }
+.years { flex: 1; display: flex; flex-direction: column; padding: 18px clamp(16px, 5vw, 64px) 40px; }
+.years-stage { margin-top: auto; }
+.years-empty { margin: 4px 0 0; font-size: 13px; color: var(--ink-faint); }
 /* The whole 1950→now axis fits the viewport — columns flex to share the width
    (no horizontal scroll); chips scale within a column but keep a fixed height,
    so column height still honestly encodes per-year activity. */
@@ -264,11 +269,11 @@ body {
 }
 .yr-chip.is-pinned { background: var(--c); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--c); }
 .yr-tick {
-  width: 100%; min-height: 16px; padding-top: 5px; border-top: 1px solid var(--line-soft);
-  font: 600 9px/1 var(--mono); color: var(--ink-faint); text-align: center; white-space: nowrap;
+  width: 100%; min-height: 20px; padding-top: 7px; border-top: 1px solid var(--line);
+  font: 600 10px/1 var(--mono); color: var(--ink-faint); text-align: center; white-space: nowrap;
 }
-.yr-tick.is-labelled { color: var(--ink-dim); }
-.years-hint { margin: 14px 0 26px; font-size: 12px; color: var(--ink-faint); }
+.yr-tick.is-labelled { color: var(--ink); font-size: 12.5px; font-weight: 700; letter-spacing: .02em; }
+.years-hint { margin: 0 0 12px; font-size: 12px; color: var(--ink-faint); }
 .years-detail { max-width: 640px; }
 .years-detail:empty { display: none; }
 

@@ -6,7 +6,7 @@
   <title>By Year · AI → LLM → Agent Timeline</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="years-page">
   <header class="site-header">
     <div class="title-block">
       <h1>Activity by Year</h1>
@@ -20,18 +20,18 @@
   </header>
 
   <main class="years" aria-label="Activity by year">
-    <div class="years-scroll">
-      <div class="years-chart" id="years-chart">
-        <p class="ref-loading">Loading…</p>
+    <section class="years-detail" id="years-detail" aria-live="polite">
+      <p class="years-empty">Hover a block to preview it — click to pin the full story here.</p>
+    </section>
+
+    <div class="years-stage">
+      <p class="years-hint" id="years-hint">Taller columns mean busier years — the quiet decades, then the climb. Hover a block for a summary, click to pin it above.</p>
+      <div class="years-scroll">
+        <div class="years-chart" id="years-chart">
+          <p class="ref-loading">Loading…</p>
+        </div>
       </div>
     </div>
-    <p class="years-hint" id="years-hint">Taller columns mean busier years — the quiet decades, then the climb. Hover a block for a summary, click to pin the full story below.</p>
-    <section class="years-detail" id="years-detail" aria-live="polite">
-      <div class="detail-empty">
-        <p class="detail-empty-icon">◷</p>
-        <p>Hover a block to preview it.<br/>Click to pin the full story here.</p>
-      </div>
-    </section>
   </main>
 
   <div class="years-tip" id="years-tip" role="status" hidden></div>
