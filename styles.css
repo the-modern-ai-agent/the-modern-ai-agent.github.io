@@ -244,15 +244,15 @@ body {
 
 /* ── By Year (horizontal) view ── */
 .years { padding: 18px clamp(16px, 5vw, 64px) 56px; }
-.years-scroll { overflow-x: auto; overflow-y: hidden; padding-top: 8px; }
-.years-chart {
-  display: flex; align-items: flex-end; gap: 0; width: max-content;
-  min-height: 300px; padding-right: 48px;
-}
-.yr-col { flex: 0 0 22px; width: 22px; display: flex; flex-direction: column; align-items: center; }
+/* The whole 1950→now axis fits the viewport — columns flex to share the width
+   (no horizontal scroll); chips scale within a column but keep a fixed height,
+   so column height still honestly encodes per-year activity. */
+.years-scroll { overflow: visible; padding-top: 8px; }
+.years-chart { display: flex; align-items: flex-end; gap: 0; width: 100%; min-height: 300px; }
+.yr-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
 .yr-stack { display: flex; flex-direction: column-reverse; align-items: center; gap: 3px; padding-bottom: 6px; }
 .yr-chip {
-  width: 14px; height: 11px; padding: 0; border-radius: 3px; cursor: pointer;
+  width: 70%; max-width: 14px; height: 11px; padding: 0; border-radius: 3px; cursor: pointer;
   border: 1px solid var(--c); background: color-mix(in srgb, var(--c) 26%, transparent);
   transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
@@ -265,7 +265,7 @@ body {
 .yr-chip.is-pinned { background: var(--c); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--c); }
 .yr-tick {
   width: 100%; min-height: 16px; padding-top: 5px; border-top: 1px solid var(--line-soft);
-  font: 600 9px/1 var(--mono); color: var(--ink-faint); text-align: center;
+  font: 600 9px/1 var(--mono); color: var(--ink-faint); text-align: center; white-space: nowrap;
 }
 .yr-tick.is-labelled { color: var(--ink-dim); }
 .years-hint { margin: 14px 0 26px; font-size: 12px; color: var(--ink-faint); }
