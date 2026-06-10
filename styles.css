@@ -246,7 +246,7 @@ body {
 /* Page is a flex column so the chart can be anchored to the bottom while the
    click-summary panel sits at the top-left, above the timeline. */
 body.years-page { display: flex; flex-direction: column; min-height: 100vh; }
-.years { flex: 1; display: flex; flex-direction: column; padding: 18px clamp(16px, 5vw, 64px) 40px; }
+.years { flex: 1; display: flex; flex-direction: column; position: relative; padding: 18px clamp(16px, 5vw, 64px) 40px; }
 .years-stage { margin-top: auto; }
 .years-empty { margin: 4px 0 0; font-size: 13px; color: var(--ink-faint); }
 /* The whole 1950→now axis fits the viewport — columns flex to share the width
@@ -274,8 +274,13 @@ body.years-page { display: flex; flex-direction: column; min-height: 100vh; }
 }
 .yr-tick.is-labelled { color: var(--ink); font-size: 12.5px; font-weight: 700; letter-spacing: .02em; }
 .years-hint { margin: 0 0 12px; font-size: 12px; color: var(--ink-faint); }
-.years-detail { max-width: 640px; }
-.years-detail:empty { display: none; }
+/* The summary overlays the page (out of flow) at the top-left, so pinning a card
+   never shifts the chart — it just appears on top. */
+.years-detail {
+  position: absolute; z-index: 20; top: 18px;
+  left: clamp(16px, 5vw, 64px); right: clamp(16px, 5vw, 64px);
+  max-width: 600px; max-height: calc(100vh - 150px); overflow: auto;
+}
 
 /* floating hover tooltip for the by-year chips */
 .years-tip {
