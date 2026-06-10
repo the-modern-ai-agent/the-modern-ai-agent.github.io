@@ -21,12 +21,35 @@ function toNode(entry) {
   return { ...entry, node: 'event' };
 }
 
+// Chronological sort key. Events use their label year with month/day from the
+// sourced date, so a couple of events listed under a venue year stay in that
+// year but land in the right month. Groups sort by their earliest member.
+function eventKey(e) {
+  const dm = String(e.date || '').match(/^(\d{4})-(\d{2})(?:-(\d{2}))?/);
+  const y = Number(e.year ?? (dm ? dm[1] : 9999));
+  const mo = dm ? Number(dm[2]) : 1;
+  const da = dm && dm[3] ? Number(dm[3]) : 1;
+  return y * 10000 + mo * 100 + da;
+}
+function chronoKey(n) {
+  if (n.memberIds) {
+    const keys = n.memberIds.map(id => DB.byId.get(id)).filter(Boolean).map(eventKey);
+    return keys.length ? Math.min(...keys) : 99990000;
+  }
+  return eventKey(n);
+}
+
 function activeNodes() {
-  if (view === 'brief') return DB.brief.map(toNode).filter(n => n && n.id);
-  let nodes = DB.events.map(toNode).filter(n => n && n.id);
-  // Type filters apply only in the Detailed (per-event) view.
-  if (typeFilter !== 'all') nodes = nodes.filter(n => n.type === typeFilter);
-  return nodes;
+  let nodes;
+  if (view === 'brief') {
+    nodes = DB.brief.map(toNode).filter(n => n && n.id);
+  } else {
+    nodes = DB.events.map(toNode).filter(n => n && n.id);
+    // Type filters apply only in the Detailed (per-event) view.
+    if (typeFilter !== 'all') nodes = nodes.filter(n => n.type === typeFilter);
+  }
+  // One continuous chronological timeline — not grouped by era.
+  return nodes.sort((a, b) => chronoKey(a) - chronoKey(b));
 }
 
 function wireHover(el, n) {
@@ -50,15 +73,7 @@ function wireHover(el, n) {
 function renderSpine() {
   const spine = document.getElementById('spine');
   spine.innerHTML = '';
-  let lastEra = null;
   for (const n of activeNodes()) {
-    if (n.era !== lastEra) {
-      const band = document.createElement('div');
-      band.className = `era-band era-${n.era}`;
-      band.textContent = ERA_LABEL[n.era];
-      spine.appendChild(band);
-      lastEra = n.era;
-    }
     const el = document.createElement('article');
     el.className = 'event';
     el.tabIndex = 0;
