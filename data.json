@@ -857,14 +857,14 @@
     {
       "id": "gemini-3-1-pro-2026",
       "year": 2026,
-      "date": "2026-06-05",
+      "date": "2026-03-19",
       "era": "llm",
       "type": "model",
       "title": "Gemini 3.1 Pro",
       "authors": "Google DeepMind",
-      "short": "Google's most advanced 2026 model, with deeper reasoning and stronger agentic coding.",
-      "long": "Rolling out from June 2026, Gemini 3.1 Pro became Google's most advanced model for complex tasks, refining Gemini 3 with deeper, more nuanced reasoning, improved instruction following, and stronger tool use and agentic coding. It comprehends massively multimodal inputs — text, audio, images, video, and entire code repositories — and posted a verified 77.1% on the ARC-AGI-2 abstract-reasoning benchmark. It shipped across the Gemini app, AI Studio, Vertex AI, and Google's developer tooling alongside an upgraded Deep Research mode. It kept Google at the frontier as the 2026 point-release race accelerated.",
-      "impact": "Kept Google at the frontier with stronger reasoning and agentic coding in 2026.",
+      "short": "An early-2026 reasoning upgrade to Gemini 3 that more than doubled its abstract-reasoning score.",
+      "long": "Announced in March 2026, Gemini 3.1 Pro refined Gemini 3 with deeper, more nuanced reasoning, improved instruction following, and stronger tool use and agentic coding. It comprehends massively multimodal inputs — text, audio, images, video, and entire code repositories — and posted a verified 77.1% on the ARC-AGI-2 abstract-reasoning benchmark, more than double Gemini 3 Pro. It shipped in preview across the Gemini app, AI Studio, Vertex AI, and Google's developer tooling. It served as a stronger reasoning baseline ahead of the faster Gemini 3.5 family at I/O.",
+      "impact": "Sharpened Google's reasoning baseline in early 2026 ahead of Gemini 3.5.",
       "diagram": null,
       "link": { "label": "Google", "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" }
     },
@@ -895,6 +895,48 @@
       "impact": "Pushed open-weight models to trillion-scale MoE with far cheaper long-context inference.",
       "diagram": "moe",
       "link": { "label": "DeepSeek", "url": "https://api-docs.deepseek.com/news/news260424" }
+    },
+    {
+      "id": "qwen3-6-2026",
+      "year": 2026,
+      "date": "2026-04",
+      "era": "llm",
+      "type": "model",
+      "title": "Qwen3.6",
+      "authors": "Qwen Team, Alibaba",
+      "short": "Alibaba's 2026 open-weight family pushing agentic coding, from a 27B dense model to large MoE.",
+      "long": "Released through early 2026, the Qwen3.6 family carried Alibaba's open-weight push into agentic coding and real-world agents. It spanned an API flagship (Qwen3.6-Plus) with coding on par with leading Western models, a fully open-source 27B dense model whose agentic coding surpassed the previous-generation 397B flagship, and open mixture-of-experts variants such as Qwen3.6-35B-A3B with multimodal capabilities. Strong Chinese-language understanding and long-context handling remained differentiators. It kept Qwen among the most-adopted open-weight families as the open frontier matured.",
+      "impact": "Kept Alibaba's open-weight models competitive on agentic coding into 2026.",
+      "diagram": null,
+      "link": { "label": "Qwen", "url": "https://qwen.ai/blog?id=qwen3.6" }
+    },
+    {
+      "id": "gemini-3-5-2026",
+      "year": 2026,
+      "date": "2026-05",
+      "era": "llm",
+      "type": "model",
+      "title": "Gemini 3.5 (Flash)",
+      "authors": "Google DeepMind",
+      "short": "Google's I/O 2026 headline: a faster 'intelligence with action' family built for agents and coding.",
+      "long": "Unveiled at Google I/O 2026, Gemini 3.5 was framed as combining frontier intelligence with action, with Gemini 3.5 Flash shipping first as a fast, agent-focused model. It outperformed Gemini 3.1 Pro on demanding coding and agentic benchmarks such as Terminal-Bench and MCP Atlas while running several times faster and cheaper than rival frontier models, and led on multimodal understanding. It launched broadly across the Gemini app, AI Mode in Search, and developer tools, with a larger 3.5 Pro to follow. It pushed Google's emphasis from raw reasoning toward fast, capable agentic action.",
+      "impact": "Shifted Google's frontier toward fast, low-cost agentic 'action' models.",
+      "diagram": null,
+      "link": { "label": "Google DeepMind", "url": "https://deepmind.google/blog/gemini-3-5-frontier-intelligence-with-action/" }
+    },
+    {
+      "id": "claude-fable-mythos-2026",
+      "year": 2026,
+      "date": "2026-06-09",
+      "era": "llm",
+      "type": "model",
+      "title": "Claude Fable 5 & Mythos 5",
+      "authors": "Anthropic",
+      "short": "Anthropic's new top model line — a widely-released Fable and a safeguard-lifted Mythos for defenders.",
+      "long": "Announced June 9, 2026, Claude Fable 5 became Anthropic's most capable widely released model, a 'Mythos-level' system built for ambitious, long-running projects that beat Opus 4.8 on tasks like spreadsheets while finishing 25–30% faster and excelling at UI design and game coding. Claude Mythos 5 is the same underlying model with safeguards selectively lifted, offered in limited availability to vetted cyberdefenders and infrastructure providers under Project Glasswing, where it is state-of-the-art at cybersecurity, biology, and healthcare. Fable 5 shipped with new classifier systems that detect misuse and jailbreak attempts. The split introduced a tiered release model separating broad access from a restricted, higher-capability variant.",
+      "impact": "Introduced a tiered frontier: a broadly-released model and a restricted, safeguard-lifted variant.",
+      "diagram": null,
+      "link": { "label": "Anthropic", "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5" }
     },
     {
       "id": "chain-of-thought-2022",
@@ -1175,6 +1217,34 @@
       "impact": "Consolidated the agent-framework layer into supported production infrastructure.",
       "diagram": null,
       "link": { "label": "Microsoft", "url": "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-version-1-0/" }
+    },
+    {
+      "id": "ucp-2026",
+      "year": 2026,
+      "date": "2026-01",
+      "era": "agent",
+      "type": "product",
+      "title": "Universal Commerce Protocol (UCP)",
+      "authors": "Google & partners",
+      "short": "Open standard letting AI agents shop and transact across merchants, surfaces, and payment providers.",
+      "long": "Introduced in January 2026, the Universal Commerce Protocol is an open standard for agentic commerce spanning the whole shopping journey — discovery, purchase, and post-purchase support — co-developed by Google with Shopify, Etsy, Wayfair, Target, and Walmart and endorsed by twenty-plus more including Mastercard, Stripe, and Visa. It gives agents, merchants, and payment providers a common language and is designed to work alongside the Agent2Agent, Agent Payments, and Model Context protocols. Shopify merchants could sell directly inside AI Mode in Search and the Gemini app, while Stripe's stack supported it with no extra integration. It extended the open agent-protocol stack across the commerce ecosystem.",
+      "impact": "Standardized how agents discover, buy, and transact across the commerce ecosystem.",
+      "diagram": null,
+      "link": { "label": "Google", "url": "https://blog.google/products-and-platforms/products/shopping/ucp-updates/" }
+    },
+    {
+      "id": "ms-agent-365-2026",
+      "year": 2026,
+      "date": "2026-05-01",
+      "era": "agent",
+      "type": "product",
+      "title": "Microsoft Agent 365",
+      "authors": "Microsoft",
+      "short": "An enterprise 'control plane' giving AI agents identity, governance, and security at scale.",
+      "long": "Generally available May 1, 2026, Microsoft Agent 365 is a control plane for managing AI agents across an organization, extending enterprise-grade identity, data protection, and threat defense to autonomous agents. It centralizes every agent in a registry for visibility, enforces access with Entra Conditional Access, and adds continuous threat detection through Microsoft Defender. Microsoft reported tens of millions of agents registered within two months of availability. It reflected the 2026 shift from building agents to governing and securing fleets of them in production.",
+      "impact": "Made governing and securing fleets of enterprise agents a managed product category.",
+      "diagram": null,
+      "link": { "label": "Microsoft", "url": "https://www.microsoft.com/en-us/security/blog/2026/05/01/microsoft-agent-365-now-generally-available-expands-capabilities-and-integrations/" }
     }
   ],
   "brief": [
@@ -1320,10 +1390,10 @@
       "era": "llm",
       "title": "The 2026 Iteration Race",
       "short": "Frontier labs ship rapid point-release flagships as agentic capability compounds.",
-      "long": "The first half of 2026 was defined less by new paradigms than by relentless iteration: OpenAI's GPT-5.5, Anthropic's Claude Opus 4.8, Google's Gemini 3.1 Pro, xAI's Grok 4.3, and DeepSeek's trillion-parameter open V4 preview all landed within months, alongside open releases like Alibaba's Qwen3.6. Gains concentrated on agentic reliability, computer use, longer context, and efficiency rather than raw new abilities. Open and closed flagships kept trading benchmark leads in ever-shorter cycles. Agentic coding and computer-using agents stood as the capabilities every lab optimized for.",
+      "long": "The first half of 2026 was defined less by new paradigms than by relentless iteration across both open and closed labs. Google's Gemini 3.1 Pro and faster Gemini 3.5, OpenAI's GPT-5.5, Anthropic's Claude Opus 4.8 and then its new top-tier Fable 5 and Mythos 5, xAI's Grok 4.3, Alibaba's open Qwen3.6, and DeepSeek's trillion-parameter open V4 all landed within months. Gains concentrated on agentic reliability, computer use, longer context, and efficiency rather than raw new abilities, and open weights kept pace with the closed frontier. Agentic coding and computer-using agents were the capabilities every lab optimized for.",
       "impact": "Compressed frontier iteration into months, centered on agentic reliability and efficiency.",
       "diagram": null,
-      "memberIds": ["gpt-5-5-2026", "claude-opus-4-8-2026", "gemini-3-1-pro-2026", "grok-4-3-2026", "deepseek-v4-2026"],
+      "memberIds": ["gemini-3-1-pro-2026", "qwen3-6-2026", "gpt-5-5-2026", "deepseek-v4-2026", "claude-opus-4-8-2026", "gemini-3-5-2026", "grok-4-3-2026", "claude-fable-mythos-2026"],
       "link": { "label": "OpenAI", "url": "https://openai.com/index/introducing-gpt-5-5/" }
     },
     {
@@ -1375,6 +1445,17 @@
       "memberIds": ["operator-cua-2025", "openai-agents-sdk-responses-api-2025", "a2a-protocol-2025", "claude-code-ga-2025", "ap2-protocol-2025"],
       "link": { "label": "OpenAI", "url": "https://openai.com/index/new-tools-for-building-agents/" }
     },
-    { "ref": "ms-agent-framework-2026" }
+    {
+      "id": "agent-infra-2026",
+      "yearLabel": "2026",
+      "era": "agent",
+      "title": "Agents Become Infrastructure",
+      "short": "Agents get a unified build framework, an enterprise control plane, and a commerce standard.",
+      "long": "Through 2026 the agent ecosystem matured from frameworks into governed, interoperable infrastructure. Microsoft Agent Framework 1.0 unified earlier toolkits into one production SDK for building multi-agent apps, Microsoft Agent 365 added an enterprise control plane to register, govern, and secure fleets of agents, and Google's Universal Commerce Protocol gave agents an open standard for shopping and payments alongside MCP, A2A, and AP2. The throughline was operational maturity — building, governing, and transacting with agents at scale. Agents shifted from demos and pilots toward managed production systems.",
+      "impact": "Turned agents into governed, interoperable production infrastructure.",
+      "diagram": null,
+      "memberIds": ["ms-agent-framework-2026", "ucp-2026", "ms-agent-365-2026"],
+      "link": { "label": "Microsoft", "url": "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-version-1-0/" }
+    }
   ]
 }
