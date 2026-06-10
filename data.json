@@ -3,6 +3,7 @@
     {
       "id": "turing-1950",
       "year": 1950,
+      "date": "1950-10",
       "era": "ai",
       "type": "paper",
       "title": "Computing Machinery and Intelligence",
@@ -29,6 +30,7 @@
     {
       "id": "perceptron-1958",
       "year": 1958,
+      "date": "1958-11",
       "era": "ai",
       "type": "paper",
       "title": "The Perceptron: A Probabilistic Model for Information Storage",
@@ -55,6 +57,7 @@
     {
       "id": "backprop-1986",
       "year": 1986,
+      "date": "1986-10-09",
       "era": "ai",
       "type": "paper",
       "title": "Learning Representations by Back-Propagating Errors",
@@ -68,6 +71,7 @@
     {
       "id": "cnn-lenet-1989",
       "year": 1989,
+      "date": "1989-12",
       "era": "ai",
       "type": "paper",
       "title": "Backpropagation Applied to Handwritten Zip Code Recognition",
@@ -81,6 +85,7 @@
     {
       "id": "lstm-1997",
       "year": 1997,
+      "date": "1997-11-15",
       "era": "ai",
       "type": "paper",
       "title": "Long Short-Term Memory",
@@ -94,6 +99,7 @@
     {
       "id": "alexnet-2012",
       "year": 2012,
+      "date": "2012-12",
       "era": "ai",
       "type": "model",
       "title": "ImageNet Classification with Deep Convolutional Networks",
@@ -108,6 +114,7 @@
     {
       "id": "gan-2014",
       "year": 2014,
+      "date": "2014-06-10",
       "era": "ai",
       "type": "paper",
       "title": "Generative Adversarial Networks",
@@ -121,6 +128,7 @@
     {
       "id": "adam-2014",
       "year": 2014,
+      "date": "2014-12-22",
       "era": "ai",
       "type": "paper",
       "title": "Adam: A Method for Stochastic Optimization",
@@ -134,6 +142,7 @@
     {
       "id": "resnet-2015",
       "year": 2015,
+      "date": "2015-12-10",
       "era": "ai",
       "type": "paper",
       "title": "Deep Residual Learning for Image Recognition",
@@ -147,6 +156,7 @@
     {
       "id": "batchnorm-2015",
       "year": 2015,
+      "date": "2015-02-11",
       "era": "ai",
       "type": "paper",
       "title": "Batch Normalization",
@@ -160,6 +170,7 @@
     {
       "id": "word2vec-2013",
       "year": 2013,
+      "date": "2013-01-16",
       "era": "llm",
       "type": "paper",
       "title": "Efficient Estimation of Word Representations",
@@ -173,6 +184,7 @@
     {
       "id": "seq2seq-attention-2014",
       "year": 2014,
+      "date": "2014-09-01",
       "era": "llm",
       "type": "paper",
       "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
@@ -186,6 +198,7 @@
     {
       "id": "transformers-2017",
       "year": 2017,
+      "date": "2017-06-12",
       "era": "llm",
       "type": "paper",
       "title": "Attention Is All You Need",
@@ -199,6 +212,7 @@
     {
       "id": "moe-shazeer-2017",
       "year": 2017,
+      "date": "2017-01-23",
       "era": "llm",
       "type": "paper",
       "title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
@@ -212,6 +226,7 @@
     {
       "id": "bert-2018",
       "year": 2018,
+      "date": "2018-10-11",
       "era": "llm",
       "type": "model",
       "title": "BERT: Pre-training of Deep Bidirectional Transformers",
@@ -225,6 +240,7 @@
     {
       "id": "gpt1-2018",
       "year": 2018,
+      "date": "2018-06-11",
       "era": "llm",
       "type": "model",
       "title": "Improving Language Understanding by Generative Pre-Training",
@@ -238,6 +254,7 @@
     {
       "id": "gpt2-2019",
       "year": 2019,
+      "date": "2019-02-14",
       "era": "llm",
       "type": "model",
       "title": "Language Models are Unsupervised Multitask Learners",
@@ -251,6 +268,7 @@
     {
       "id": "t5-2019",
       "year": 2019,
+      "date": "2019-10-23",
       "era": "llm",
       "type": "model",
       "title": "Exploring the Limits of Transfer Learning with T5",
@@ -264,6 +282,7 @@
     {
       "id": "roberta-2019",
       "year": 2019,
+      "date": "2019-07-26",
       "era": "llm",
       "type": "model",
       "title": "RoBERTa: A Robustly Optimized BERT Pretraining Approach",
@@ -277,6 +296,7 @@
     {
       "id": "transformer-xl-2019",
       "year": 2019,
+      "date": "2019-01-09",
       "era": "llm",
       "type": "paper",
       "title": "Transformer-XL: Attentive Language Models Beyond a Fixed Context",
@@ -290,6 +310,7 @@
     {
       "id": "scaling-laws-2020",
       "year": 2020,
+      "date": "2020-01-23",
       "era": "llm",
       "type": "paper",
       "title": "Scaling Laws for Neural Language Models",
@@ -303,6 +324,7 @@
     {
       "id": "gpt3-2020",
       "year": 2020,
+      "date": "2020-05-28",
       "era": "llm",
       "type": "model",
       "title": "Language Models are Few-Shot Learners",
@@ -316,6 +338,7 @@
     {
       "id": "rag-2020",
       "year": 2020,
+      "date": "2020-05-22",
       "era": "llm",
       "type": "paper",
       "title": "Retrieval-Augmented Generation",
@@ -329,6 +352,7 @@
     {
       "id": "lora-2021",
       "year": 2021,
+      "date": "2021-06-17",
       "era": "llm",
       "type": "paper",
       "title": "LoRA: Low-Rank Adaptation of Large Language Models",
@@ -342,6 +366,7 @@
     {
       "id": "codex-2021",
       "year": 2021,
+      "date": "2021-07-07",
       "era": "llm",
       "type": "model",
       "title": "Evaluating Large Language Models Trained on Code",
@@ -355,6 +380,7 @@
     {
       "id": "switch-moe-2021",
       "year": 2021,
+      "date": "2021-01-11",
       "era": "llm",
       "type": "paper",
       "title": "Switch Transformers: Scaling to Trillion-Parameter Models",
@@ -368,6 +394,7 @@
     {
       "id": "palm-2022",
       "year": 2022,
+      "date": "2022-04-05",
       "era": "llm",
       "type": "model",
       "title": "PaLM: Scaling Language Modeling with Pathways",
@@ -381,6 +408,7 @@
     {
       "id": "chinchilla-2022",
       "year": 2022,
+      "date": "2022-03-29",
       "era": "llm",
       "type": "paper",
       "title": "Training Compute-Optimal Large Language Models",
@@ -394,6 +422,7 @@
     {
       "id": "flash-attention-2022",
       "year": 2022,
+      "date": "2022-05-27",
       "era": "llm",
       "type": "paper",
       "title": "FlashAttention: Fast and Memory-Efficient Exact Attention",
@@ -407,6 +436,7 @@
     {
       "id": "instructgpt-rlhf-2022",
       "year": 2022,
+      "date": "2022-03-04",
       "era": "llm",
       "type": "paper",
       "title": "Training Language Models to Follow Instructions",
@@ -420,6 +450,7 @@
     {
       "id": "chatgpt-2022",
       "year": 2022,
+      "date": "2022-11-30",
       "era": "llm",
       "type": "product",
       "title": "ChatGPT",
@@ -434,6 +465,7 @@
     {
       "id": "gpt4-2023",
       "year": 2023,
+      "date": "2023-03-14",
       "era": "llm",
       "type": "model",
       "title": "GPT-4 Technical Report",
@@ -447,6 +479,7 @@
     {
       "id": "llama-2023",
       "year": 2023,
+      "date": "2023-02-24",
       "era": "llm",
       "type": "model",
       "title": "LLaMA: Open and Efficient Foundation Language Models",
@@ -460,6 +493,7 @@
     {
       "id": "llama2-2023",
       "year": 2023,
+      "date": "2023-07-18",
       "era": "llm",
       "type": "model",
       "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models",
@@ -473,6 +507,7 @@
     {
       "id": "mistral-2023",
       "year": 2023,
+      "date": "2023-09-27",
       "era": "llm",
       "type": "model",
       "title": "Mistral 7B",
@@ -486,6 +521,7 @@
     {
       "id": "mixtral-2023",
       "year": 2023,
+      "date": "2023-12-11",
       "era": "llm",
       "type": "model",
       "title": "Mixtral 8x7B",
@@ -499,6 +535,7 @@
     {
       "id": "dpo-2023",
       "year": 2023,
+      "date": "2023-05-29",
       "era": "llm",
       "type": "paper",
       "title": "Direct Preference Optimization",
@@ -512,6 +549,7 @@
     {
       "id": "gemini-2023",
       "year": 2023,
+      "date": "2023-12-06",
       "era": "llm",
       "type": "model",
       "title": "Gemini: A Family of Highly Capable Multimodal Models",
@@ -525,6 +563,7 @@
     {
       "id": "claude3-2024",
       "year": 2024,
+      "date": "2024-03-04",
       "era": "llm",
       "type": "model",
       "title": "Claude 3 Model Family",
@@ -538,6 +577,7 @@
     {
       "id": "gpt4o-2024",
       "year": 2024,
+      "date": "2024-05-13",
       "era": "llm",
       "type": "model",
       "title": "GPT-4o",
@@ -551,6 +591,7 @@
     {
       "id": "o1-2024",
       "year": 2024,
+      "date": "2024-09-12",
       "era": "llm",
       "type": "model",
       "title": "o1: Learning to Reason with LLMs",
@@ -564,6 +605,7 @@
     {
       "id": "deepseek-r1-2025",
       "year": 2025,
+      "date": "2025-01-20",
       "era": "llm",
       "type": "model",
       "title": "DeepSeek-R1",
@@ -577,6 +619,7 @@
     {
       "id": "openai-o3-mini-2025",
       "year": 2025,
+      "date": "2025-01-31",
       "era": "llm",
       "type": "model",
       "title": "OpenAI o3-mini",
@@ -590,6 +633,7 @@
     {
       "id": "grok-3-2025",
       "year": 2025,
+      "date": "2025-02-19",
       "era": "llm",
       "type": "model",
       "title": "Grok 3",
@@ -603,6 +647,7 @@
     {
       "id": "claude-3-7-sonnet-2025",
       "year": 2025,
+      "date": "2025-02-24",
       "era": "llm",
       "type": "model",
       "title": "Claude 3.7 Sonnet",
@@ -616,6 +661,7 @@
     {
       "id": "gpt-4-5-2025",
       "year": 2025,
+      "date": "2025-02-27",
       "era": "llm",
       "type": "model",
       "title": "GPT-4.5",
@@ -629,6 +675,7 @@
     {
       "id": "gemini-2-5-pro-2025",
       "year": 2025,
+      "date": "2025-03-25",
       "era": "llm",
       "type": "model",
       "title": "Gemini 2.5 Pro",
@@ -642,6 +689,7 @@
     {
       "id": "llama-4-2025",
       "year": 2025,
+      "date": "2025-04-05",
       "era": "llm",
       "type": "model",
       "title": "Llama 4 (Scout & Maverick)",
@@ -655,6 +703,7 @@
     {
       "id": "qwen3-2025",
       "year": 2025,
+      "date": "2025-04-29",
       "era": "llm",
       "type": "model",
       "title": "Qwen3",
@@ -668,6 +717,7 @@
     {
       "id": "claude-4-2025",
       "year": 2025,
+      "date": "2025-05-22",
       "era": "llm",
       "type": "model",
       "title": "Claude Opus 4 & Sonnet 4",
@@ -681,6 +731,7 @@
     {
       "id": "gpt-5-2025",
       "year": 2025,
+      "date": "2025-08-07",
       "era": "llm",
       "type": "model",
       "title": "GPT-5",
@@ -694,6 +745,7 @@
     {
       "id": "gpt-oss-2025",
       "year": 2025,
+      "date": "2025-08-05",
       "era": "llm",
       "type": "model",
       "title": "gpt-oss-120b & gpt-oss-20b",
@@ -707,6 +759,7 @@
     {
       "id": "grok-4-2025",
       "year": 2025,
+      "date": "2025-07-14",
       "era": "llm",
       "type": "model",
       "title": "Grok 4",
@@ -720,6 +773,7 @@
     {
       "id": "gemini-3-2025",
       "year": 2025,
+      "date": "2025-11-18",
       "era": "llm",
       "type": "model",
       "title": "Gemini 3",
@@ -733,6 +787,7 @@
     {
       "id": "gpt-5-1-2025",
       "year": 2025,
+      "date": "2025-11-13",
       "era": "llm",
       "type": "model",
       "title": "GPT-5.1 & GPT-5.1-Codex-Max",
@@ -746,6 +801,7 @@
     {
       "id": "claude-opus-4-5-2025",
       "year": 2025,
+      "date": "2025-11",
       "era": "llm",
       "type": "model",
       "title": "Claude Opus 4.5",
@@ -759,6 +815,7 @@
     {
       "id": "deepseek-v3-2-2025",
       "year": 2025,
+      "date": "2025-12-02",
       "era": "llm",
       "type": "paper",
       "title": "DeepSeek-V3.2",
@@ -772,6 +829,7 @@
     {
       "id": "gpt-5-5-2026",
       "year": 2026,
+      "date": "2026-04-24",
       "era": "llm",
       "type": "model",
       "title": "GPT-5.5",
@@ -785,6 +843,7 @@
     {
       "id": "claude-opus-4-8-2026",
       "year": 2026,
+      "date": "2026-05",
       "era": "llm",
       "type": "model",
       "title": "Claude Opus 4.8",
@@ -798,6 +857,7 @@
     {
       "id": "gemini-3-1-pro-2026",
       "year": 2026,
+      "date": "2026-06-05",
       "era": "llm",
       "type": "model",
       "title": "Gemini 3.1 Pro",
@@ -811,6 +871,7 @@
     {
       "id": "grok-4-3-2026",
       "year": 2026,
+      "date": "2026-05-15",
       "era": "llm",
       "type": "model",
       "title": "Grok 4.3",
@@ -824,6 +885,7 @@
     {
       "id": "deepseek-v4-2026",
       "year": 2026,
+      "date": "2026-04-24",
       "era": "llm",
       "type": "model",
       "title": "DeepSeek-V4 (preview)",
@@ -837,6 +899,7 @@
     {
       "id": "chain-of-thought-2022",
       "year": 2022,
+      "date": "2022-01-28",
       "era": "agent",
       "type": "paper",
       "title": "Chain-of-Thought Prompting Elicits Reasoning",
@@ -850,6 +913,7 @@
     {
       "id": "react-2022",
       "year": 2022,
+      "date": "2022-10-06",
       "era": "agent",
       "type": "paper",
       "title": "ReAct: Synergizing Reasoning and Acting",
@@ -863,6 +927,7 @@
     {
       "id": "toolformer-2023",
       "year": 2023,
+      "date": "2023-02-09",
       "era": "agent",
       "type": "paper",
       "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
@@ -876,6 +941,7 @@
     {
       "id": "hugginggpt-2023",
       "year": 2023,
+      "date": "2023-03-30",
       "era": "agent",
       "type": "paper",
       "title": "HuggingGPT: Solving Tasks with ChatGPT and its Friends",
@@ -889,6 +955,7 @@
     {
       "id": "reflexion-2023",
       "year": 2023,
+      "date": "2023-03-20",
       "era": "agent",
       "type": "paper",
       "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
@@ -902,6 +969,7 @@
     {
       "id": "generative-agents-2023",
       "year": 2023,
+      "date": "2023-04-07",
       "era": "agent",
       "type": "paper",
       "title": "Generative Agents: Interactive Simulacra of Human Behavior",
@@ -915,6 +983,7 @@
     {
       "id": "tree-of-thoughts-2023",
       "year": 2023,
+      "date": "2023-05-17",
       "era": "agent",
       "type": "paper",
       "title": "Tree of Thoughts: Deliberate Problem Solving with LLMs",
@@ -928,6 +997,7 @@
     {
       "id": "voyager-2023",
       "year": 2023,
+      "date": "2023-05-25",
       "era": "agent",
       "type": "paper",
       "title": "Voyager: An Open-Ended Embodied Agent with LLMs",
@@ -941,6 +1011,7 @@
     {
       "id": "autogpt-2023",
       "year": 2023,
+      "date": "2023-03-30",
       "era": "agent",
       "type": "product",
       "title": "AutoGPT",
@@ -954,6 +1025,7 @@
     {
       "id": "swe-bench-2024",
       "year": 2024,
+      "date": "2023-10-10",
       "era": "agent",
       "type": "paper",
       "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
@@ -967,6 +1039,7 @@
     {
       "id": "devin-2024",
       "year": 2024,
+      "date": "2024-03-12",
       "era": "agent",
       "type": "model",
       "title": "Devin",
@@ -980,6 +1053,7 @@
     {
       "id": "computer-use-2024",
       "year": 2024,
+      "date": "2024-10-22",
       "era": "agent",
       "type": "product",
       "title": "Claude Computer Use",
@@ -993,6 +1067,7 @@
     {
       "id": "multi-agent-2024",
       "year": 2024,
+      "date": "2023-08-16",
       "era": "agent",
       "type": "product",
       "title": "AutoGen: Multi-Agent Conversation Framework",
@@ -1006,6 +1081,7 @@
     {
       "id": "mcp-2024",
       "year": 2024,
+      "date": "2024-11-25",
       "era": "agent",
       "type": "product",
       "title": "Model Context Protocol",
@@ -1019,6 +1095,7 @@
     {
       "id": "operator-cua-2025",
       "year": 2025,
+      "date": "2025-01-23",
       "era": "agent",
       "type": "product",
       "title": "OpenAI Operator & Computer-Using Agent",
@@ -1032,6 +1109,7 @@
     {
       "id": "openai-agents-sdk-responses-api-2025",
       "year": 2025,
+      "date": "2025-03-11",
       "era": "agent",
       "type": "product",
       "title": "OpenAI Responses API & Agents SDK",
@@ -1045,6 +1123,7 @@
     {
       "id": "a2a-protocol-2025",
       "year": 2025,
+      "date": "2025-04-09",
       "era": "agent",
       "type": "product",
       "title": "Agent2Agent (A2A) Protocol",
@@ -1058,6 +1137,7 @@
     {
       "id": "claude-code-ga-2025",
       "year": 2025,
+      "date": "2025-05-22",
       "era": "agent",
       "type": "product",
       "title": "Claude Code (general availability)",
@@ -1071,6 +1151,7 @@
     {
       "id": "ap2-protocol-2025",
       "year": 2025,
+      "date": "2025-09-16",
       "era": "agent",
       "type": "product",
       "title": "Agent Payments Protocol (AP2)",
@@ -1084,6 +1165,7 @@
     {
       "id": "ms-agent-framework-2026",
       "year": 2026,
+      "date": "2026-04-03",
       "era": "agent",
       "type": "product",
       "title": "Microsoft Agent Framework 1.0",

@@ -14,15 +14,19 @@ python3 -m http.server 8000
 
 ## Views & controls
 
-- **Recap ⇄ Detailed** (top-right): Recap shows ~18 grouped milestones; Detailed shows every event.
+- **Recap ⇄ Detailed** (top-right): Recap shows ~22 grouped milestones; Detailed shows every event.
 - **Type filters** (`All / Papers / Models / Products`): shown in Detailed view only; `type` is per-event.
 - **Hover** an event for a short summary; **click** to pin the full panel (long summary, optional diagram/image, impact, source link).
+- **References** (header link → `references.html`): every source link grouped by domain, listed as `date — topic` and sorted oldest-first. Domains are ordered by how many references they anchor.
 
 ## Add or edit an event
 
 All content lives in `data.json`. Each `events[]` object has:
 
 - `id`, `year` (int) — or `yearLabel` (string range) for brief groups.
+- `date` (optional): best-effort source date as `YYYY-MM-DD`, `YYYY-MM`, or `YYYY`. Used by the
+  References page; falls back to `year` when absent. arXiv entries use the v1 submission date,
+  models/products their announcement date.
 - `era`: `"ai" | "llm" | "agent"` (drives the color).
 - `type`: `"paper" | "model" | "product"` (drives the filters).
 - `short` (one-line hover), `long` (3–4 sentence panel summary), `impact` (one line), `authors`, `link {label,url}`.

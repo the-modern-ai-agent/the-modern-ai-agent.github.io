@@ -42,6 +42,13 @@ body {
 .toggle-btn.is-active { color: var(--bg); background: var(--ink); }
 .toggle-btn:not(.is-active):hover { color: var(--ink); }
 
+.header-actions { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.nav-link {
+  font: 600 13px/1 var(--sans); color: var(--ink-dim); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; white-space: nowrap;
+}
+.nav-link:hover { color: var(--ink); border-color: #3a4a63; }
+
 .timeline {
   display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   gap: clamp(16px, 4vw, 48px);
@@ -179,9 +186,45 @@ body {
   border-radius: 10px; border: 1px solid var(--line); }
 .detail-card .d-image figcaption { font: 10px/1.4 var(--mono); color: var(--ink-faint); margin-top: 6px; }
 
+/* ── References page ── */
+.references { padding: 32px clamp(16px, 5vw, 64px) 64px; max-width: 1080px; }
+.ref-loading { color: var(--ink-faint); font-size: 14px; }
+.ref-group { margin: 0 0 34px; }
+.ref-domain {
+  display: flex; align-items: baseline; gap: 12px;
+  padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px solid var(--line-soft);
+}
+/* Domain is the headline: large, bright mono — clearly outranks its entries. */
+.ref-domain-name { font: 800 21px/1.15 var(--mono); color: #fff; letter-spacing: -.01em; }
+.ref-count {
+  font: 600 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.ref-list { list-style: none; margin: 0; padding: 0; }
+.ref-entry {
+  position: relative; display: flex; align-items: baseline; gap: 10px;
+  padding: 5px 0 5px 18px; font-size: 13.5px; line-height: 1.5;
+}
+.ref-entry::before {
+  content: ""; position: absolute; left: 1px; top: 10px; width: 7px; height: 7px;
+  border-radius: 50%; background: var(--dot, var(--ink-faint));
+}
+.ref-entry[data-era="ai"]    { --dot: var(--era-ai); }
+.ref-entry[data-era="llm"]   { --dot: var(--era-llm); }
+.ref-entry[data-era="agent"] { --dot: var(--era-agent); }
+.ref-date {
+  flex-shrink: 0; min-width: 92px; white-space: nowrap;
+  font: 600 12.5px/1.5 var(--mono); color: var(--ink-faint);
+}
+.ref-sep { flex-shrink: 0; color: var(--line); }
+.ref-topic { color: var(--ink-dim); text-decoration: none; }
+.ref-topic:hover { color: var(--ink); text-decoration: underline; }
+
 @media (max-width: 760px) {
   .timeline { grid-template-columns: 1fr; }
   .detail { position: static; order: 2; }
   .detail:empty { display: none; }
   .site-header { flex-direction: column; gap: 14px; }
+  .ref-entry { flex-wrap: wrap; row-gap: 0; }
+  .ref-entry .ref-sep { display: none; }
 }

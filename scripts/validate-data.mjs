@@ -27,6 +27,12 @@ for (const ev of events) {
   if (!TYPES.has(ev.type)) errors.push(`event "${ev.id}" has bad type "${ev.type}"`);
   if (ev.diagram != null && !DIAGRAMS.has(ev.diagram)) errors.push(`event "${ev.id}" has bad diagram "${ev.diagram}"`);
   if (ev.year == null && ev.yearLabel == null) errors.push(`event "${ev.id}" needs year or yearLabel`);
+  // `date` is optional; when present it is a best-effort YYYY, YYYY-MM, or YYYY-MM-DD.
+  // Year is not cross-checked against `year` — a few events are listed under their
+  // venue year (e.g. ICLR 2024) while their source posted earlier.
+  if (ev.date != null && !/^\d{4}(-\d{2}(-\d{2})?)?$/.test(ev.date)) {
+    errors.push(`event "${ev.id}" has bad date "${ev.date}" (want YYYY, YYYY-MM, or YYYY-MM-DD)`);
+  }
   if (!ev.link?.url || !ev.link?.label) errors.push(`event "${ev.id}" link needs {label,url}`);
   if (ids.has(ev.id)) errors.push(`duplicate event id "${ev.id}"`);
   ids.add(ev.id);
