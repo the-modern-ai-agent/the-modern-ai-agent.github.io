@@ -197,6 +197,19 @@
       "link": { "label": "arXiv:1706.03762", "url": "https://arxiv.org/abs/1706.03762" }
     },
     {
+      "id": "moe-shazeer-2017",
+      "year": 2017,
+      "era": "llm",
+      "type": "paper",
+      "title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
+      "authors": "Shazeer et al., Google Brain, 2017",
+      "short": "Introduces a sparsely-gated mixture-of-experts layer that scales capacity without scaling compute.",
+      "long": "The paper introduces a sparsely-gated mixture-of-experts layer containing thousands of feed-forward expert sub-networks, with a trainable gating network that routes each example to only a small handful of them. Because just a few experts activate per input, the model's parameter count — over 100 billion in their largest networks — grows enormously while per-example compute stays modest, a property known as conditional computation. Inserted between stacked LSTM layers, it delivered large gains on language modeling and machine translation at far lower cost than dense models of comparable capacity. It established sparsely-gated MoE as a practical way to scale neural networks, directly seeding Switch Transformers and the mixture-of-experts frontier models that followed.",
+      "impact": "Established sparsely-gated mixture-of-experts as a practical route to scaling model capacity.",
+      "diagram": "moe",
+      "link": { "label": "arXiv:1701.06538", "url": "https://arxiv.org/abs/1701.06538" }
+    },
+    {
       "id": "bert-2018",
       "year": 2018,
       "era": "llm",
@@ -471,6 +484,19 @@
       "link": { "label": "arXiv:2310.06825", "url": "https://arxiv.org/abs/2310.06825" }
     },
     {
+      "id": "mixtral-2023",
+      "year": 2023,
+      "era": "llm",
+      "type": "model",
+      "title": "Mixtral 8x7B",
+      "authors": "Jiang et al., Mistral AI, 2023",
+      "short": "An open sparse mixture-of-experts model matching far larger dense models at a fraction of the active compute.",
+      "long": "Mixtral 8x7B is a sparse mixture-of-experts model in which a router selects two of eight expert feed-forward blocks per token at each layer, so only about 13 billion of its roughly 47 billion parameters are active for any given token. This let it match or beat much larger dense models such as Llama 2 70B and GPT-3.5 on most benchmarks while running at the speed and cost of a far smaller model. Released openly under an Apache 2.0 license in December 2023, it became the breakout open MoE model and a popular base for fine-tuning. It carried mixture-of-experts from research and proprietary systems into the mainstream open-weight ecosystem.",
+      "impact": "Brought sparse mixture-of-experts into the mainstream open-weight ecosystem.",
+      "diagram": "moe",
+      "link": { "label": "arXiv:2401.04088", "url": "https://arxiv.org/abs/2401.04088" }
+    },
+    {
       "id": "dpo-2023",
       "year": 2023,
       "era": "llm",
@@ -677,6 +703,136 @@
       "impact": "Reversed OpenAI's closed stance with strong locally-runnable open-weight reasoning models.",
       "diagram": null,
       "link": { "label": "OpenAI", "url": "https://openai.com/index/introducing-gpt-oss/" }
+    },
+    {
+      "id": "grok-4-2025",
+      "year": 2025,
+      "era": "llm",
+      "type": "model",
+      "title": "Grok 4",
+      "authors": "xAI",
+      "short": "xAI's tool-using reasoning flagship — first model to clear 50% on Humanity's Last Exam.",
+      "long": "Released July 2025 and trained on xAI's 200,000-GPU Colossus cluster, Grok 4 was reinforcement-learning-trained to reason while natively using tools such as a code interpreter and live web search, choosing its own queries mid-task. A multi-agent 'Grok 4 Heavy' variant became the first model to score 50% on Humanity's Last Exam and set a new closed-model state of the art on ARC-AGI v2. It treated tool use during reasoning as a core capability rather than an add-on. The launch confirmed xAI as a durable frontier competitor only months after Grok 3.",
+      "impact": "Established tool-using reasoning at the frontier and kept xAI in the top tier.",
+      "diagram": "reasoning",
+      "link": { "label": "xAI", "url": "https://x.ai/news/grok-4" }
+    },
+    {
+      "id": "gemini-3-2025",
+      "year": 2025,
+      "era": "llm",
+      "type": "model",
+      "title": "Gemini 3",
+      "authors": "Google DeepMind",
+      "short": "Google's frontier flagship retakes the top of the leaderboards with a Deep Think reasoning mode.",
+      "long": "Released November 18, 2025, Gemini 3 — led by Gemini 3 Pro — folded Gemini's multimodal, long-context, and agentic abilities into Google's most capable model, topping the LMArena leaderboard at a then-record ~1501 Elo. It posted frontier scores on hard reasoning benchmarks such as Humanity's Last Exam and GPQA Diamond and introduced Gemini 3 Deep Think, an enhanced extended-reasoning mode. Shipped across the Gemini app, AI Studio, and Vertex AI on day one, it reasserted Google at the very front of the race. It set the late-2025 high-water mark that rivals immediately moved to match.",
+      "impact": "Returned Google to the top of the frontier-model leaderboards.",
+      "diagram": null,
+      "link": { "label": "Google", "url": "https://blog.google/products-and-platforms/products/gemini/gemini-3/" }
+    },
+    {
+      "id": "gpt-5-1-2025",
+      "year": 2025,
+      "era": "llm",
+      "type": "model",
+      "title": "GPT-5.1 & GPT-5.1-Codex-Max",
+      "authors": "OpenAI",
+      "short": "A warmer, adaptively-reasoning GPT-5 refresh paired with a coder built for day-long agent runs.",
+      "long": "Released November 2025, GPT-5.1 refined the GPT-5 line with a warmer, more conversational default and adaptive reasoning that decides on its own when to think before answering. Alongside it, GPT-5.1-Codex-Max became the first model natively trained to work across multiple context windows through 'compaction,' coherently operating over millions of tokens and sustaining agentic coding tasks for more than 24 hours. Together they pushed OpenAI's flagship toward longer-horizon, more autonomous work. The pairing underscored how thoroughly agentic coding had become the frontier's headline battleground.",
+      "impact": "Pushed OpenAI's flagship toward warmer chat and day-long agentic coding.",
+      "diagram": null,
+      "link": { "label": "OpenAI", "url": "https://openai.com/index/gpt-5-1/" }
+    },
+    {
+      "id": "claude-opus-4-5-2025",
+      "year": 2025,
+      "era": "llm",
+      "type": "model",
+      "title": "Claude Opus 4.5",
+      "authors": "Anthropic",
+      "short": "Anthropic's frontier model leading real-world coding, agents, and computer use — at a sharply lower price.",
+      "long": "Released November 2025, Claude Opus 4.5 was positioned as the best model for coding, agents, and computer use, posting state-of-the-art results on real-world software-engineering benchmarks while handling ambiguity and trade-offs with little hand-holding. Anthropic cut Opus pricing to $5/$25 per million tokens, bringing frontier-tier capability to far more teams, and shipped it with upgrades to Claude Code including a desktop app and an improved Plan Mode. It deepened Anthropic's lead in agentic coding heading into 2026. The release made high-end agentic capability markedly more affordable.",
+      "impact": "Set the agentic-coding bar while making frontier capability much cheaper.",
+      "diagram": null,
+      "link": { "label": "Anthropic", "url": "https://www.anthropic.com/news/claude-opus-4-5" }
+    },
+    {
+      "id": "deepseek-v3-2-2025",
+      "year": 2025,
+      "era": "llm",
+      "type": "paper",
+      "title": "DeepSeek-V3.2",
+      "authors": "DeepSeek-AI, 2025",
+      "short": "Open model introducing sparse attention and thinking-integrated tool use, with a variant taking IMO/IOI gold.",
+      "long": "Released December 2025 with an accompanying paper (arXiv:2512.02556), DeepSeek-V3.2 introduced DeepSeek Sparse Attention (DSA), an efficient mechanism that cuts long-context compute while preserving quality, and was the first DeepSeek model to fold thinking directly into tool use. Trained with large-scale reinforcement learning across more than 1,800 agentic environments, the base model performed comparably to GPT-5, while a high-compute 'Speciale' variant earned gold-medal performance at the 2025 International Mathematical Olympiad and International Olympiad in Informatics. It continued the open-weight reasoning push DeepSeek began with R1. It showed open models matching the closed frontier on hard reasoning and agentic tool use.",
+      "impact": "Advanced efficient long-context attention and kept open models at the reasoning frontier.",
+      "diagram": null,
+      "link": { "label": "arXiv:2512.02556", "url": "https://arxiv.org/abs/2512.02556" }
+    },
+    {
+      "id": "gpt-5-5-2026",
+      "year": 2026,
+      "era": "llm",
+      "type": "model",
+      "title": "GPT-5.5",
+      "authors": "OpenAI",
+      "short": "OpenAI's most capable model yet, built to plan, use tools, and finish messy multi-step computer work.",
+      "long": "Released April 24, 2026, GPT-5.5 was framed by OpenAI as its smartest and most intuitive model and a new way of getting work done on a computer, able to take a messy, multi-part task and plan, use tools, check its own work, and keep going until it is finished. It improved at coding, research, data analysis, document and spreadsheet creation, and operating software across tools. Despite a higher price than the intervening GPT-5.4, it was markedly more token-efficient at matched latency. It pushed OpenAI's flagship further into autonomous, computer-using agentic work.",
+      "impact": "Advanced OpenAI's flagship toward autonomous, tool-using computer work.",
+      "diagram": null,
+      "link": { "label": "OpenAI", "url": "https://openai.com/index/introducing-gpt-5-5/" }
+    },
+    {
+      "id": "claude-opus-4-8-2026",
+      "year": 2026,
+      "era": "llm",
+      "type": "model",
+      "title": "Claude Opus 4.8",
+      "authors": "Anthropic",
+      "short": "Anthropic's 2026 flagship and the strongest computer-use and browser agent tested at release.",
+      "long": "Building on the rapid Opus 4.6 and 4.7 cadence of early 2026, Claude Opus 4.8 shipped as Anthropic's sharpest agentic model — the only one to complete every case end-to-end on the Super-Agent benchmark and the top computer-use and browser agent tested, scoring 84% on Online-Mind2Web. It added user-controllable effort levels, a 'dynamic workflows' feature in Claude Code for very large-scale problems, and a Fast mode running at 2.5× speed and far lower cost than before. It held Opus pricing at $5/$25 per million tokens. It showed how quickly frontier agentic capability was compounding through 2026's point releases.",
+      "impact": "Led 2026 computer-use and browser-agent benchmarks while compounding agentic reliability.",
+      "diagram": null,
+      "link": { "label": "Anthropic", "url": "https://www.anthropic.com/news/claude-opus-4-8" }
+    },
+    {
+      "id": "gemini-3-1-pro-2026",
+      "year": 2026,
+      "era": "llm",
+      "type": "model",
+      "title": "Gemini 3.1 Pro",
+      "authors": "Google DeepMind",
+      "short": "Google's most advanced 2026 model, with deeper reasoning and stronger agentic coding.",
+      "long": "Rolling out from June 2026, Gemini 3.1 Pro became Google's most advanced model for complex tasks, refining Gemini 3 with deeper, more nuanced reasoning, improved instruction following, and stronger tool use and agentic coding. It comprehends massively multimodal inputs — text, audio, images, video, and entire code repositories — and posted a verified 77.1% on the ARC-AGI-2 abstract-reasoning benchmark. It shipped across the Gemini app, AI Studio, Vertex AI, and Google's developer tooling alongside an upgraded Deep Research mode. It kept Google at the frontier as the 2026 point-release race accelerated.",
+      "impact": "Kept Google at the frontier with stronger reasoning and agentic coding in 2026.",
+      "diagram": null,
+      "link": { "label": "Google", "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" }
+    },
+    {
+      "id": "grok-4-3-2026",
+      "year": 2026,
+      "era": "llm",
+      "type": "model",
+      "title": "Grok 4.3",
+      "authors": "xAI",
+      "short": "xAI's fastest and most intelligent model, anchoring a fast-iterating 2026 Grok lineup.",
+      "long": "Released May 15, 2026, Grok 4.3 was described by xAI as the fastest and most intelligent model it had built, continuing the rapid Grok 4.x cadence that began in late 2025 and retiring several earlier models on the same day. It arrived amid a wave of specialized xAI releases, including the agentic-coding Grok Build and a flagship voice model, reflecting a push beyond a single general model into a family of task-tuned systems. It kept xAI competitive at the frontier through the first half of 2026. The release underscored how compressed model-iteration cycles had become across every lab.",
+      "impact": "Kept xAI at the frontier and exemplified 2026's compressed iteration cycles.",
+      "diagram": null,
+      "link": { "label": "xAI Docs", "url": "https://docs.x.ai/developers/models/grok-4.3" }
+    },
+    {
+      "id": "deepseek-v4-2026",
+      "year": 2026,
+      "era": "llm",
+      "type": "model",
+      "title": "DeepSeek-V4 (preview)",
+      "authors": "DeepSeek-AI",
+      "short": "Open trillion-scale mixture-of-experts models with a new hybrid sparse attention and 1M-token context.",
+      "long": "Previewed in April 2026, the DeepSeek-V4 series introduced two open mixture-of-experts models — V4-Pro at 1.6 trillion parameters (49B activated) and V4-Flash at 284B (13B activated) — both supporting a one-million-token context. Their hybrid attention combines Compressed Sparse Attention and Heavily Compressed Attention, cutting single-token inference to roughly a quarter of the FLOPs and a tenth of the KV cache of DeepSeek-V3.2 at 1M context. Both expose three reasoning-effort modes, with a maximum-effort V4-Pro-Max advancing open-source knowledge benchmarks. It carried DeepSeek's efficiency-led open-weight push into the trillion-parameter, long-context era.",
+      "impact": "Pushed open-weight models to trillion-scale MoE with far cheaper long-context inference.",
+      "diagram": "moe",
+      "link": { "label": "DeepSeek", "url": "https://api-docs.deepseek.com/news/news260424" }
     },
     {
       "id": "chain-of-thought-2022",
@@ -911,6 +1067,32 @@
       "impact": "Made agentic terminal-based coding mainstream and a billion-dollar product category.",
       "diagram": null,
       "link": { "label": "Anthropic", "url": "https://www.anthropic.com/claude-code" }
+    },
+    {
+      "id": "ap2-protocol-2025",
+      "year": 2025,
+      "era": "agent",
+      "type": "product",
+      "title": "Agent Payments Protocol (AP2)",
+      "authors": "Google",
+      "short": "Open protocol letting AI agents securely authorize and make payments on a user's behalf.",
+      "long": "Announced September 2025 with more than 60 payments and technology partners, AP2 is an open, payment-agnostic protocol defining how AI agents securely initiate and authorize transactions for a user. Built as an extension of the Agent2Agent and Model Context protocols, it adds verifiable mandates for 'human not present' purchases — letting an agent buy, say, a limited-run ticket the moment it goes on sale under pre-authorized rules. Google later donated AP2 to the FIDO Alliance to keep it platform-agnostic and community-led. It extended the open agent-protocol stack from tools and messaging into commerce.",
+      "impact": "Extended open agent protocols into secure, autonomous payments and commerce.",
+      "diagram": null,
+      "link": { "label": "Google Cloud", "url": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol" }
+    },
+    {
+      "id": "ms-agent-framework-2026",
+      "year": 2026,
+      "era": "agent",
+      "type": "product",
+      "title": "Microsoft Agent Framework 1.0",
+      "authors": "Microsoft",
+      "short": "Production-ready open framework unifying Semantic Kernel and AutoGen for multi-agent apps.",
+      "long": "Released to general availability on April 3, 2026, Microsoft Agent Framework 1.0 is an open-source framework for building agents and multi-agent workflows in .NET and Python, with stable APIs and long-term support. It unified Microsoft's earlier Semantic Kernel and AutoGen efforts into a single SDK offering a standard agent abstraction, tool integration, session management, and orchestration patterns, with cross-vendor interoperability through A2A and MCP. Hosted deployment via Foundry Agent Service added managed identity, scaling, state, and observability. It signaled the maturing of the agent-framework layer from experiments into supported production infrastructure.",
+      "impact": "Consolidated the agent-framework layer into supported production infrastructure.",
+      "diagram": null,
+      "link": { "label": "Microsoft", "url": "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-version-1-0/" }
     }
   ],
   "brief": [
@@ -964,6 +1146,7 @@
       "link": { "label": "arXiv:1301.3781", "url": "https://arxiv.org/abs/1301.3781" }
     },
     { "ref": "transformers-2017" },
+    { "ref": "moe-shazeer-2017" },
     {
       "id": "pretraining-explosion",
       "yearLabel": "2018–2019",
@@ -1007,10 +1190,10 @@
       "era": "llm",
       "title": "Frontier and Open Models",
       "short": "Multimodal frontier models race ahead while open weights proliferate.",
-      "long": "GPT-4, Gemini, Claude 3, and GPT-4o pushed multimodal frontier capability while o1 added inference-time reasoning; in parallel LLaMA, Llama 2, and Mistral built an open-weight ecosystem and DPO simplified alignment. Closed frontier and open communities advanced together.",
+      "long": "GPT-4, Gemini, Claude 3, and GPT-4o pushed multimodal frontier capability while o1 added inference-time reasoning; in parallel LLaMA, Llama 2, Mistral, and its Mixtral mixture-of-experts built an open-weight ecosystem and DPO simplified alignment. Closed frontier and open communities advanced together.",
       "impact": "Cemented multimodal frontier models alongside a thriving open-weight ecosystem.",
       "diagram": null,
-      "memberIds": ["gpt4-2023", "llama-2023", "llama2-2023", "mistral-2023", "dpo-2023", "gemini-2023", "claude3-2024", "gpt4o-2024", "o1-2024"],
+      "memberIds": ["gpt4-2023", "llama-2023", "llama2-2023", "mistral-2023", "mixtral-2023", "dpo-2023", "gemini-2023", "claude3-2024", "gpt4o-2024", "o1-2024"],
       "link": { "label": "arXiv:2303.08774", "url": "https://arxiv.org/abs/2303.08774" }
     },
     {
@@ -1036,6 +1219,30 @@
       "diagram": null,
       "memberIds": ["llama-4-2025", "qwen3-2025", "claude-4-2025", "gpt-5-2025", "gpt-oss-2025"],
       "link": { "label": "OpenAI", "url": "https://openai.com/index/introducing-gpt-5/" }
+    },
+    {
+      "id": "frontier-late-2025",
+      "yearLabel": "Late 2025",
+      "era": "llm",
+      "title": "The Late-2025 Frontier",
+      "short": "Every major lab ships a year-end flagship as reasoning and agentic coding converge.",
+      "long": "The back half of 2025 brought a dense wave of frontier releases: xAI's tool-using Grok 4, Google's leaderboard-topping Gemini 3, OpenAI's warmer GPT-5.1 with its day-long Codex-Max coder, Anthropic's cheaper state-of-the-art Claude Opus 4.5, and DeepSeek's open V3.2 with sparse attention. Across labs the throughlines were the same — reasoning by default, longer context, and agentic coding as the headline use case. Open and closed models traded the lead within weeks of one another. The frontier had reconverged into a fast, crowded race.",
+      "impact": "Converged the frontier on reasoning-by-default and agentic coding across every major lab.",
+      "diagram": null,
+      "memberIds": ["grok-4-2025", "gemini-3-2025", "gpt-5-1-2025", "claude-opus-4-5-2025", "deepseek-v3-2-2025"],
+      "link": { "label": "Google", "url": "https://blog.google/products-and-platforms/products/gemini/gemini-3/" }
+    },
+    {
+      "id": "frontier-2026",
+      "yearLabel": "H1 2026",
+      "era": "llm",
+      "title": "The 2026 Iteration Race",
+      "short": "Frontier labs ship rapid point-release flagships as agentic capability compounds.",
+      "long": "The first half of 2026 was defined less by new paradigms than by relentless iteration: OpenAI's GPT-5.5, Anthropic's Claude Opus 4.8, Google's Gemini 3.1 Pro, xAI's Grok 4.3, and DeepSeek's trillion-parameter open V4 preview all landed within months, alongside open releases like Alibaba's Qwen3.6. Gains concentrated on agentic reliability, computer use, longer context, and efficiency rather than raw new abilities. Open and closed flagships kept trading benchmark leads in ever-shorter cycles. Agentic coding and computer-using agents stood as the capabilities every lab optimized for.",
+      "impact": "Compressed frontier iteration into months, centered on agentic reliability and efficiency.",
+      "diagram": null,
+      "memberIds": ["gpt-5-5-2026", "claude-opus-4-8-2026", "gemini-3-1-pro-2026", "grok-4-3-2026", "deepseek-v4-2026"],
+      "link": { "label": "OpenAI", "url": "https://openai.com/index/introducing-gpt-5-5/" }
     },
     {
       "id": "reasoning-acting",
@@ -1080,11 +1287,12 @@
       "era": "agent",
       "title": "The Agent Stack",
       "short": "Agents become shipped products, protocols, and breakout coding tools.",
-      "long": "In 2025 agents turned from research demos into shipped products and standards. OpenAI's Operator put an autonomous computer-using browser agent in front of consumers, while its Responses API and Agents SDK gave developers a production stack for building their own. Google's Agent2Agent protocol standardized how agents from different vendors discover and delegate to one another, complementing MCP's tool connections. Anthropic's generally available Claude Code became the breakout agentic coding tool, marking the year agents went to work in earnest.",
+      "long": "In 2025 agents turned from research demos into shipped products and standards. OpenAI's Operator put an autonomous computer-using browser agent in front of consumers, while its Responses API and Agents SDK gave developers a production stack for building their own. Google's Agent2Agent protocol standardized how agents from different vendors discover and delegate to one another, and its Agent Payments Protocol extended that stack into commerce, complementing MCP's tool connections. Anthropic's generally available Claude Code became the breakout agentic coding tool, marking the year agents went to work in earnest.",
       "impact": "Turned agents into shipped products, interoperability standards, and breakout coding tools.",
       "diagram": null,
-      "memberIds": ["operator-cua-2025", "openai-agents-sdk-responses-api-2025", "a2a-protocol-2025", "claude-code-ga-2025"],
+      "memberIds": ["operator-cua-2025", "openai-agents-sdk-responses-api-2025", "a2a-protocol-2025", "claude-code-ga-2025", "ap2-protocol-2025"],
       "link": { "label": "OpenAI", "url": "https://openai.com/index/new-tools-for-building-agents/" }
-    }
+    },
+    { "ref": "ms-agent-framework-2026" }
   ]
 }
