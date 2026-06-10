@@ -229,11 +229,75 @@ body {
 .ref-topic { color: var(--ink-dim); text-decoration: none; }
 .ref-topic:hover { color: var(--ink); text-decoration: underline; }
 
+/* ── Editorial page ── */
+.editorial { padding: 32px clamp(16px, 5vw, 64px) 56px; max-width: 720px; }
+.editorial .lead { margin: 0 0 22px; font-size: 16px; line-height: 1.7; color: var(--ink); }
+.editorial h2 {
+  margin: 28px 0 8px; font: 700 13px/1.3 var(--sans); letter-spacing: .04em;
+  text-transform: uppercase; color: var(--era-llm);
+}
+.editorial p { margin: 0 0 12px; font-size: 14px; line-height: 1.75; color: var(--ink-dim); }
+.editorial a { color: var(--era-ai); text-decoration: none; }
+.editorial a:hover { text-decoration: underline; }
+.editorial strong { color: var(--ink); }
+.editorial em { font-style: normal; font-weight: 600; color: var(--ink); }
+
+/* ── By Year (horizontal) view ── */
+.years { padding: 18px clamp(16px, 5vw, 64px) 56px; }
+.years-scroll { overflow-x: auto; overflow-y: hidden; padding-top: 8px; }
+.years-chart {
+  display: flex; align-items: flex-end; gap: 0; width: max-content;
+  min-height: 300px; padding-right: 48px;
+}
+.yr-col { flex: 0 0 22px; width: 22px; display: flex; flex-direction: column; align-items: center; }
+.yr-stack { display: flex; flex-direction: column-reverse; align-items: center; gap: 3px; padding-bottom: 6px; }
+.yr-chip {
+  width: 14px; height: 11px; padding: 0; border-radius: 3px; cursor: pointer;
+  border: 1px solid var(--c); background: color-mix(in srgb, var(--c) 26%, transparent);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.yr-chip[data-era="ai"] { --c: var(--era-ai); }
+.yr-chip[data-era="llm"] { --c: var(--era-llm); }
+.yr-chip[data-era="agent"] { --c: var(--era-agent); }
+.yr-chip:hover, .yr-chip:focus-visible {
+  transform: scale(1.28); outline: none; background: var(--c); box-shadow: 0 0 10px var(--c);
+}
+.yr-chip.is-pinned { background: var(--c); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--c); }
+.yr-tick {
+  width: 100%; min-height: 16px; padding-top: 5px; border-top: 1px solid var(--line-soft);
+  font: 600 9px/1 var(--mono); color: var(--ink-faint); text-align: center;
+}
+.yr-tick.is-labelled { color: var(--ink-dim); }
+.years-hint { margin: 14px 0 26px; font-size: 12px; color: var(--ink-faint); }
+.years-detail { max-width: 640px; }
+.years-detail:empty { display: none; }
+
+/* floating hover tooltip for the by-year chips */
+.years-tip {
+  position: fixed; z-index: 50; max-width: 280px; pointer-events: none;
+  background: #18223a; border: 1px solid var(--c, var(--line));
+  border-left: 3px solid var(--c, var(--era-llm)); border-radius: 10px; padding: 9px 12px;
+  box-shadow: 0 12px 34px rgba(0,0,0,.6);
+  opacity: 0; transform: translateY(4px); transition: opacity .14s ease, transform .14s ease;
+}
+.years-tip.is-on { opacity: 1; transform: translateY(0); }
+.years-tip[hidden] { display: none; }
+.years-tip .tip-meta {
+  display: block; margin-bottom: 3px; font: 600 9px/1.4 var(--mono);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--era-llm));
+}
+.years-tip .tip-title { display: block; margin-bottom: 3px; font-size: 13px; color: #fff; }
+.years-tip .tip-short { display: block; font-size: 11.5px; line-height: 1.5; color: var(--ink-dim); }
+@media (prefers-reduced-motion: reduce) {
+  .yr-chip, .years-tip { transition: none; }
+}
+
 @media (max-width: 760px) {
   .timeline { grid-template-columns: 1fr; }
   .detail { position: static; order: 2; }
   .detail:empty { display: none; }
   .site-header { flex-direction: column; gap: 14px; }
+  .header-actions { flex-wrap: wrap; }
   .ref-entry { flex-wrap: wrap; row-gap: 0; }
   .ref-entry .ref-sep { display: none; }
 }

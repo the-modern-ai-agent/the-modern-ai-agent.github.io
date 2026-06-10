@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>By Year · AI → LLM → Agent Timeline</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="title-block">
+      <h1>Activity by Year</h1>
+      <p class="tagline">Every event stacked under its year — the quiet decades, then the climb. <span class="era-ai">classic AI</span> · <span class="era-llm">language models</span> · <span class="era-agent">agents</span>.</p>
+    </div>
+    <div class="header-actions">
+      <a class="nav-link" href="index.html">← Timeline</a>
+      <a class="nav-link" href="references.html">References</a>
+      <a class="nav-link" href="editorial.html">Editorial</a>
+    </div>
+  </header>
+
+  <main class="years" aria-label="Activity by year">
+    <div class="years-scroll">
+      <div class="years-chart" id="years-chart">
+        <p class="ref-loading">Loading…</p>
+      </div>
+    </div>
+    <p class="years-hint" id="years-hint">Taller columns mean busier years. Hover a block for a summary, click to pin the full story below. Scroll sideways →</p>
+    <section class="years-detail" id="years-detail" aria-live="polite">
+      <div class="detail-empty">
+        <p class="detail-empty-icon">◷</p>
+        <p>Hover a block to preview it.<br/>Click to pin the full story here.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="years-tip" id="years-tip" role="status" hidden></div>
+
+  <footer class="site-footer">
+    <p>One block per event, grouped by calendar year. Years with no events are shown as gaps, to scale.</p>
+  </footer>
+
+  <script src="timeline-core.js"></script>
+  <script src="years.js"></script>
+</body>
+</html>

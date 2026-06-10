@@ -18,6 +18,10 @@ python3 -m http.server 8000
 - **Type filters** (`All / Papers / Models / Products`): shown in Detailed view only; `type` is per-event.
 - **Hover** an event for a short summary; **click** to pin the full panel (long summary, optional diagram/image, impact, source link).
 - **References** (header link → `references.html`): every source link grouped by domain, listed as `date — topic` and sorted oldest-first. Domains are ordered by how many references they anchor.
+- **By Year** (header link → `years.html`): a horizontal, year-grouped view — one column per calendar year (empty years kept, to scale), an era-colored block per event stacked so column height shows activity. Hover for a summary, click to pin the full detail card.
+- **Editorial** (header link → `editorial.html`): a short note on what's included, what's left out, and how events are categorized and dated.
+
+Shared rendering (era labels, diagrams, the acronym glossary, the detail card) lives in `timeline-core.js`, loaded by both `app.js` (spine) and `years.js` (by-year).
 
 ## Add or edit an event
 
