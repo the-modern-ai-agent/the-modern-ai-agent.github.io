@@ -13,6 +13,7 @@ let DB = { events: [], brief: [], byId: new Map() };
 let view = localStorage.getItem('timeline-view') || 'brief';
 let typeFilter = 'all';
 let pinnedId = null;
+const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Normalize a brief entry (ref | group) or a raw event into a uniform "node".
 function toNode(entry) {
@@ -90,13 +91,22 @@ function renderSpine() {
     el.addEventListener('keydown', (e) => { if (e.key === 'Enter') pin(n.id, n, true); });
     spine.appendChild(el);
   }
+  // Reveal events as they scroll into view.
+  window.revealOnScroll?.(spine.querySelectorAll('.event'));
 }
 
 function renderDetail(n, focusPanel) {
   const panel = document.getElementById('detail');
+  // First pin from the empty state gets the full spring + staggered entrance;
+  // switching between already-pinned events uses a light cross-fade so rapid
+  // event-to-event navigation stays smooth instead of replaying the big stagger.
+  const isSwap = !!panel.querySelector('.detail-card') && !REDUCE;
   panel.innerHTML = renderDetailCard(n);
   const card = panel.querySelector('.detail-card');
-  card.addEventListener('animationend', () => card.classList.remove('revealing'), { once: true });
+  if (isSwap) { card.classList.remove('revealing'); card.classList.add('swapping'); }
+  const finalize = () => card.classList.remove('revealing', 'swapping');
+  card.addEventListener('animationend', finalize, { once: true });
+  setTimeout(finalize, 700); // backup if the paint clock is throttled
   // Move focus into the panel only for keyboard-initiated pins, so mouse users
   // aren't yanked away from the spine.
   if (focusPanel) card.querySelector('h2').focus();

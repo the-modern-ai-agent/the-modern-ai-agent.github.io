@@ -42,10 +42,35 @@ function pin(e) {
   pinnedId = e.id;
   document.querySelectorAll('.yr-chip').forEach(c =>
     c.classList.toggle('is-pinned', c.dataset.id === e.id));
+  // Light cross-fade when swapping between already-pinned events; full entrance
+  // only on the first pin.
+  const isSwap = !!DETAIL.querySelector('.detail-card');
   DETAIL.innerHTML = renderDetailCard(e);
+  DETAIL.classList.add('has-pinned');
+  if (HINT) HINT.classList.add('is-hidden'); // the "click to pin it above" hint no longer applies
   const card = DETAIL.querySelector('.detail-card');
-  card.addEventListener('animationend', () => card.classList.remove('revealing'), { once: true });
+  // Dismiss control.
+  const close = document.createElement('button');
+  close.type = 'button';
+  close.className = 'detail-close';
+  close.setAttribute('aria-label', 'Dismiss summary');
+  close.innerHTML = '\u00d7';
+  close.addEventListener('click', dismiss);
+  card.appendChild(close);
+  if (isSwap) { card.classList.remove('revealing'); card.classList.add('swapping'); }
+  const finalize = () => card.classList.remove('revealing', 'swapping');
+  card.addEventListener('animationend', finalize, { once: true });
+  setTimeout(finalize, 700); // backup if the paint clock is throttled
   DETAIL.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function dismiss() {
+  if (pinnedId === null) return;
+  pinnedId = null;
+  document.querySelectorAll('.yr-chip.is-pinned').forEach(c => c.classList.remove('is-pinned'));
+  DETAIL.classList.remove('has-pinned');
+  DETAIL.innerHTML = '<p class="years-empty">Hover a block to preview it \u2014 click to pin the full story here.</p>';
+  if (HINT) HINT.classList.remove('is-hidden');
 }
 
 function wireChip(chip, e) {
@@ -72,6 +97,7 @@ function render(data) {
   for (const arr of byYear.values()) arr.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
 
   const frag = document.createDocumentFragment();
+  let gi = 0; // global chip index, drives the entrance stagger
   for (let y = min; y <= max; y++) {
     const events = byYear.get(y) || [];
     const col = document.createElement('div');
@@ -87,6 +113,7 @@ function render(data) {
       chip.dataset.id = e.id;
       chip.dataset.era = e.era;
       chip.setAttribute('aria-label', `${e.year} — ${e.title}`);
+      chip.style.setProperty('--i', gi++);
       wireChip(chip, e);
       stack.appendChild(chip);
     }
@@ -99,6 +126,8 @@ function render(data) {
     frag.appendChild(col);
   }
   CHART.replaceChildren(frag);
+  // Trigger the staggered grow-in once the chart scrolls into view.
+  window.revealEl?.(CHART);
 }
 
 async function init() {
@@ -116,4 +145,6 @@ async function init() {
 
 // Keep the hover tooltip from lingering in the wrong place during scroll.
 window.addEventListener('scroll', hideTip, true);
+// Esc dismisses the pinned summary.
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismiss(); });
 init();

@@ -40,6 +40,7 @@ function render(data) {
 
     const section = document.createElement('section');
     section.className = 'ref-group';
+    section.setAttribute('data-reveal', '');
 
     const head = document.createElement('div');
     head.className = 'ref-domain';
@@ -83,6 +84,7 @@ function render(data) {
   }
 
   REFS_EL.replaceChildren(frag);
+  window.revealOnScroll?.(REFS_EL.querySelectorAll('.ref-group'));
 }
 
 async function init() {
