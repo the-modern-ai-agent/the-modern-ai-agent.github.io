@@ -128,6 +128,13 @@ function render(data) {
   CHART.replaceChildren(frag);
   // Trigger the staggered grow-in once the chart scrolls into view.
   window.revealEl?.(CHART);
+
+  // On mobile the chart scrolls horizontally; start at the dense recent end so
+  // the "climb" is visible immediately and the sideways scroll is discoverable.
+  const scroller = document.querySelector('.years-scroll');
+  if (scroller && matchMedia('(max-width: 760px)').matches) {
+    requestAnimationFrame(() => { scroller.scrollLeft = scroller.scrollWidth; });
+  }
 }
 
 async function init() {
@@ -145,6 +152,7 @@ async function init() {
 
 // Keep the hover tooltip from lingering in the wrong place during scroll.
 window.addEventListener('scroll', hideTip, true);
-// Esc dismisses the pinned summary.
+// Esc, or a tap on the mobile bottom-sheet scrim, dismisses the pinned summary.
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismiss(); });
+installSheetScrim(dismiss);
 init();

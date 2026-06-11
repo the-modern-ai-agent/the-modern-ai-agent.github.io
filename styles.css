@@ -467,12 +467,125 @@ body.years-page { display: flex; flex-direction: column; min-height: 100vh; }
   .yr-chip, .years-tip { transition: none; }
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE / TOUCH LAYER
+   Two independent axes:
+     • Layout      → keys off viewport width (≤760px stack, ≤480px phone pass)
+     • Interaction → keys off capability (hover/pointer), so hover-only states
+                     never stick after a tap and touch gets real affordances.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Bottom-sheet scrim. Inert/hidden on desktop; shown on mobile only while a
+   detail card is pinned (driven by :has, dismissed by a JS tap handler). */
+.sheet-scrim { display: none; }
+
 @media (max-width: 760px) {
-  .timeline { grid-template-columns: 1fr; }
-  .detail { position: static; order: 2; }
-  .detail:empty { display: none; }
-  .site-header { flex-direction: column; gap: 14px; }
-  .header-actions { flex-wrap: wrap; }
+  .timeline { grid-template-columns: 1fr; padding-bottom: 40px; }
   .ref-entry { flex-wrap: wrap; row-gap: 0; }
   .ref-entry .ref-sep { display: none; }
+
+  .site-header { flex-direction: column; gap: 14px; }
+  .header-actions { flex-wrap: wrap; }
+
+  /* Detail becomes a dismissable bottom sheet in both views. It slides up only
+     when a .detail-card is present, so the empty/hover-hint state never shows. */
+  .detail, .years-detail {
+    position: fixed; left: 0; right: 0; bottom: 0; top: auto;
+    width: auto; max-width: none; order: 0; margin: 0;
+    z-index: 60; max-height: 85vh; overflow-y: auto; overflow-x: hidden;
+    overscroll-behavior: contain;
+    padding: 10px 14px calc(14px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, var(--bg-2), var(--bg));
+    border-top: 1px solid var(--line);
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -22px 60px -16px rgba(0,0,0,.75);
+    transform: translateY(110%);
+    transition: transform var(--dur) var(--ease-out);
+    -webkit-overflow-scrolling: touch;
+  }
+  .detail:has(.detail-card), .years-detail:has(.detail-card) { transform: translateY(0); }
+  .detail .detail-empty { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .detail, .years-detail { transition: none; }
+  }
+
+  /* Scrim behind the sheet; tapping it dismisses (handler wired in JS). */
+  body:has(.detail-card) .sheet-scrim {
+    display: block; position: fixed; inset: 0; z-index: 55;
+    background: rgba(4,7,12,.55);
+    -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+    animation: scrimIn var(--dur) var(--ease-out);
+  }
+  /* Lock the page behind the open sheet (the sheet scrolls independently). */
+  body:has(.detail-card) { overflow: hidden; }
+
+  /* Larger close target on the sheet. */
+  .detail-close { width: 40px; height: 40px; font-size: 22px; }
+
+  /* ≥44px touch targets for the header/filter controls. */
+  .nav-link, .toggle-btn, .filter-btn {
+    min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* Roomier spine rows: pad the tap area and re-seat the dot to the year line. */
+  .event { padding: 7px 0; margin: 0; min-height: 44px; }
+  .event-dot { top: 12px; }
+
+  /* ── By Year: scroll horizontally instead of crushing 76 years to fit ── */
+  .years-scroll {
+    overflow-x: auto; overflow-y: visible;
+    overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+  }
+  .years-chart { width: max-content; min-width: 100%; }
+  .yr-col { flex: 0 0 auto; min-width: 32px; }
+  .yr-chip { width: 20px; max-width: 22px; height: 18px; position: relative; }
+  /* Extend the hit area beyond the small visual mark without distorting heights. */
+  .yr-chip::after { content: ""; position: absolute; inset: -5px -7px; }
+  .yr-tick { font-size: 11px; }
+  .yr-tick.is-labelled { font-size: 12px; }
+}
+
+@keyframes scrimIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Tighter phone pass: reclaim vertical space from the sticky header + gutters. */
+@media (max-width: 480px) {
+  .site-header { padding: 16px 16px 13px; gap: 10px; }
+  .title-block h1 { font-size: clamp(19px, 6.4vw, 24px); }
+  .tagline { font-size: 12px; }
+  .header-actions { gap: 9px; width: 100%; }
+  .timeline { padding: 20px 16px 40px; }
+  .years { padding: 14px 16px 28px; }
+  .references, .editorial { padding-top: 22px; }
+}
+
+/* Touch devices: neutralise the lift/scale/glow hover states so they don't
+   stick after a tap, while keeping keyboard :focus-visible affordances and the
+   pinned-state styling intact. */
+@media (hover: none) {
+  .event:hover { transform: none; }
+  .event:hover .event-dot {
+    transform: none; background: #2b3a52; box-shadow: 0 0 0 4px var(--bg);
+  }
+  .event.is-pinned:hover .event-dot {
+    background: var(--c); box-shadow: 0 0 0 4px var(--bg), 0 0 14px var(--c);
+  }
+  .nav-link:hover, .filter-btn:hover, .toggle-btn:hover { transform: none; }
+  .nav-link:hover { background: transparent; border-color: var(--line); }
+  .yr-chip:hover {
+    transform: none; box-shadow: none;
+    background: color-mix(in srgb, var(--c) 26%, transparent);
+  }
+  .yr-chip.is-pinned:hover {
+    background: var(--c); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--c);
+  }
+}
+
+/* Tap-to-toggle glossary tips (touch has no hover; JS adds .is-tip on tap). */
+.gloss.is-tip::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.gloss.is-tip::before { opacity: 1; }
+@media (max-width: 760px) {
+  .gloss::after { max-width: min(230px, 78vw); }
 }

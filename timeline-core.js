@@ -185,3 +185,26 @@ function renderDetailCard(n) {
       <a class="d-link" href="${n.link.url}" target="_blank" rel="noopener">↗ ${n.link.label}</a>
     </article>`;
 }
+
+// ── Shared touch/mobile UI plumbing (used by both the spine and by-year views) ──
+
+// Inject the bottom-sheet scrim once and wire its tap to the page's dismiss.
+// Visibility is CSS-driven (body:has(.detail-card) on mobile); this only
+// supplies the tap-to-dismiss handler.
+function installSheetScrim(onDismiss) {
+  if (document.querySelector('.sheet-scrim')) return;
+  const scrim = document.createElement('div');
+  scrim.className = 'sheet-scrim';
+  scrim.addEventListener('click', onDismiss);
+  document.body.appendChild(scrim);
+}
+
+// Tap-to-toggle the acronym glossary tips. Desktop keeps its hover tooltip; this
+// adds a touch path plus tap-elsewhere-to-close. One delegated handler does both:
+// a tap on a .gloss toggles it, a tap anywhere else closes any open tip.
+document.addEventListener('click', (e) => {
+  const g = e.target.closest('.gloss');
+  const wasOpen = g && g.classList.contains('is-tip');
+  document.querySelectorAll('.gloss.is-tip').forEach(el => el.classList.remove('is-tip'));
+  if (g && !wasOpen) g.classList.add('is-tip');
+});

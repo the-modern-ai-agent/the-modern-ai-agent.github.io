@@ -103,6 +103,14 @@ function renderDetail(n, focusPanel) {
   const isSwap = !!panel.querySelector('.detail-card') && !REDUCE;
   panel.innerHTML = renderDetailCard(n);
   const card = panel.querySelector('.detail-card');
+  // Dismiss control — clears the pin (and, on mobile, closes the bottom sheet).
+  const close = document.createElement('button');
+  close.type = 'button';
+  close.className = 'detail-close';
+  close.setAttribute('aria-label', 'Dismiss');
+  close.innerHTML = '×';
+  close.addEventListener('click', dismiss);
+  card.appendChild(close);
   if (isSwap) { card.classList.remove('revealing'); card.classList.add('swapping'); }
   const finalize = () => card.classList.remove('revealing', 'swapping');
   card.addEventListener('animationend', finalize, { once: true });
@@ -110,6 +118,13 @@ function renderDetail(n, focusPanel) {
   // Move focus into the panel only for keyboard-initiated pins, so mouse users
   // aren't yanked away from the spine.
   if (focusPanel) card.querySelector('h2').focus();
+}
+
+function dismiss() {
+  if (pinnedId === null) return;
+  pinnedId = null;
+  document.querySelectorAll('.event.is-pinned').forEach(e => e.classList.remove('is-pinned'));
+  resetDetail();
 }
 
 function pin(id, n, focusPanel) {
@@ -205,5 +220,9 @@ async function init() {
 
 document.querySelectorAll('.toggle-btn').forEach(b =>
   b.addEventListener('click', () => setView(b.dataset.view)));
+
+// Mobile bottom-sheet dismissal: tap the scrim or press Esc.
+installSheetScrim(dismiss);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismiss(); });
 
 init();
