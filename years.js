@@ -69,7 +69,7 @@ function dismiss() {
   pinnedId = null;
   document.querySelectorAll('.yr-chip.is-pinned').forEach(c => c.classList.remove('is-pinned'));
   DETAIL.classList.remove('has-pinned');
-  DETAIL.innerHTML = '<p class="years-empty">Hover a block to preview it \u2014 click to pin the full story here.</p>';
+  DETAIL.innerHTML = '';
   if (HINT) HINT.classList.remove('is-hidden');
 }
 
