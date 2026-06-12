@@ -147,16 +147,46 @@ function syncToggle() {
   });
 }
 
+function filterValueLabel() {
+  return (TYPES.find(t => t.key === typeFilter) || TYPES[0]).label;
+}
+
 function buildFilters() {
   const bar = document.getElementById('filters');
   if (!bar) return;
+  // Mobile collapses to the .filter-toggle trigger + a .filter-options dropdown;
+  // desktop renders .filter-options as display:contents so the pills stay inline.
   bar.innerHTML =
+    `<button class="filter-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="filter-options">
+       <span class="filter-toggle-label">Filter</span>
+       <span class="filter-toggle-value">${filterValueLabel()}</span>
+       <span class="filter-caret" aria-hidden="true">▾</span>
+     </button>` +
     `<span class="filter-label">Filter</span>` +
-    TYPES.map(t =>
-      `<button class="filter-btn${t.key === typeFilter ? ' is-active' : ''}" data-type="${t.key}" aria-pressed="${t.key === typeFilter}">${t.label}</button>`
-    ).join('');
+    `<div class="filter-options" id="filter-options">` +
+      TYPES.map(t =>
+        `<button class="filter-btn${t.key === typeFilter ? ' is-active' : ''}" data-type="${t.key}" aria-pressed="${t.key === typeFilter}">${t.label}</button>`
+      ).join('') +
+    `</div>`;
   bar.querySelectorAll('.filter-btn').forEach(b =>
-    b.addEventListener('click', () => setFilter(b.dataset.type)));
+    b.addEventListener('click', () => { setFilter(b.dataset.type); closeFilterMenu(); }));
+  // stopPropagation so the document outside-click handler doesn't immediately re-close.
+  bar.querySelector('.filter-toggle')
+     .addEventListener('click', (e) => { e.stopPropagation(); toggleFilterMenu(); });
+}
+
+function toggleFilterMenu() {
+  const bar = document.getElementById('filters');
+  if (!bar) return;
+  const open = bar.classList.toggle('is-open');
+  bar.querySelector('.filter-toggle')?.setAttribute('aria-expanded', String(open));
+}
+
+function closeFilterMenu() {
+  const bar = document.getElementById('filters');
+  if (!bar || !bar.classList.contains('is-open')) return;
+  bar.classList.remove('is-open');
+  bar.querySelector('.filter-toggle')?.setAttribute('aria-expanded', 'false');
 }
 
 // The type filter only makes sense per-event, so the bar shows in Detailed view only.
@@ -169,6 +199,9 @@ function syncFilterBar() {
     b.classList.toggle('is-active', on);
     b.setAttribute('aria-pressed', String(on));
   });
+  const val = bar.querySelector('.filter-toggle-value');
+  if (val) val.textContent = filterValueLabel();
+  bar.querySelector('.filter-toggle')?.classList.toggle('is-filtered', typeFilter !== 'all');
 }
 
 function setFilter(next) {
@@ -184,6 +217,7 @@ function setView(next) {
   localStorage.setItem('timeline-view', view);
   syncToggle();
   syncFilterBar();
+  closeFilterMenu();
   const spine = document.getElementById('spine');
   // If a spine item had focus, the re-render below destroys it; remember to restore.
   const hadSpineFocus = document.activeElement?.classList?.contains('event');
@@ -223,6 +257,11 @@ document.querySelectorAll('.toggle-btn').forEach(b =>
 
 // Mobile bottom-sheet dismissal: tap the scrim or press Esc.
 installSheetScrim(dismiss);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismiss(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { dismiss(); closeFilterMenu(); } });
+// Close the collapsed filter menu on any tap outside the bar.
+document.addEventListener('click', (e) => {
+  const bar = document.getElementById('filters');
+  if (bar?.classList.contains('is-open') && !bar.contains(e.target)) closeFilterMenu();
+});
 
 init();

@@ -131,10 +131,27 @@ function render(data) {
 
   // On mobile the chart scrolls horizontally; start at the dense recent end so
   // the "climb" is visible immediately and the sideways scroll is discoverable.
+  // Keep the edge fades scroll-aware so the first/last year is never clipped.
   const scroller = document.querySelector('.years-scroll');
-  if (scroller && matchMedia('(max-width: 760px)').matches) {
-    requestAnimationFrame(() => { scroller.scrollLeft = scroller.scrollWidth; });
+  if (scroller) {
+    const update = () => updateScrollFades(scroller);
+    scroller.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    if (matchMedia('(max-width: 760px)').matches) {
+      requestAnimationFrame(() => { scroller.scrollLeft = scroller.scrollWidth; update(); });
+    } else {
+      update();
+    }
   }
+}
+
+// Fade only the edge that still has off-screen content. At either extreme the
+// fade on that side drops to 0, so the final/first year renders crisp and whole.
+function updateScrollFades(scroller) {
+  const FADE = 24;
+  const maxLeft = scroller.scrollWidth - scroller.clientWidth;
+  scroller.style.setProperty('--fade-l', scroller.scrollLeft > 1 ? FADE + 'px' : '0px');
+  scroller.style.setProperty('--fade-r', scroller.scrollLeft < maxLeft - 1 ? FADE + 'px' : '0px');
 }
 
 async function init() {
