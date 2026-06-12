@@ -105,6 +105,58 @@ body::before {
 }
 .nav-link:hover { color: var(--ink); border-color: #3a4a63; background: rgba(255,255,255,.025); transform: translateY(-1px); }
 
+/* Mobile hamburger + slide-in drawer (built by nav.js); hidden on desktop. */
+.nav-burger, .nav-scrim, .nav-drawer { display: none; }
+@media (max-width: 760px) {
+  .header-actions .nav-link { display: none; }   /* collapsed into the drawer */
+  /* Drop the actions row entirely on pages that have no in-header control left
+     (everything but the index, which keeps the Recap/Detailed toggle). */
+  .header-actions:not(:has(.view-toggle)) { display: none; }
+  /* Reserve the top-right corner so the title never runs under the pinned ☰. */
+  .title-block { padding-right: 56px; }
+  .nav-burger {
+    position: absolute; top: 20px; right: clamp(16px, 5vw, 64px); z-index: 6;
+    display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; padding: 0 11px; box-sizing: border-box; flex-shrink: 0;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; cursor: pointer;
+  }
+  .nav-burger span { display: block; width: 100%; height: 2px; border-radius: 2px; background: var(--ink-dim); }
+  .nav-scrim {
+    display: block; position: fixed; inset: 0; z-index: 65;
+    background: rgba(4,7,12,.55); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+    opacity: 0; pointer-events: none; transition: opacity var(--dur) var(--ease-out);
+  }
+  .nav-drawer {
+    display: flex; flex-direction: column; gap: 2px;
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 70;
+    width: min(78vw, 320px);
+    padding: 18px 16px calc(20px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, var(--bg-2), var(--bg));
+    border-left: 1px solid var(--line); box-shadow: -22px 0 60px -16px rgba(0,0,0,.75);
+    transform: translateX(100%); transition: transform var(--dur) var(--ease-out);
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+  body.nav-open .nav-scrim { opacity: 1; pointer-events: auto; }
+  body.nav-open .nav-drawer { transform: none; }
+  body.nav-open { overflow: hidden; }
+  .nav-drawer-close {
+    align-self: flex-end; width: 40px; height: 40px; margin-bottom: 6px; padding: 0;
+    display: grid; place-items: center; border-radius: 50%;
+    border: 1px solid var(--line); background: var(--panel); color: var(--ink-dim);
+    font: 400 22px/1 var(--sans); cursor: pointer;
+  }
+  .nav-drawer-link {
+    display: flex; align-items: center; width: 100%; min-height: 50px;
+    padding: 0 6px; border: 0; border-bottom: 1px solid var(--line-soft); border-radius: 0;
+    white-space: normal; font: 600 16px/1.2 var(--sans); color: var(--ink); background: none;
+  }
+  .nav-drawer-link:last-child { border-bottom: 0; }
+  .nav-drawer-link:hover { background: none; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-scrim, .nav-drawer { transition: none; }
+}
+
 .timeline {
   display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   gap: clamp(16px, 4vw, 48px);
@@ -310,6 +362,42 @@ body::before {
     border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-spring); }
 .filter-btn:hover { color: var(--ink); border-color: #3a4a63; transform: translateY(-1px); }
 .filter-btn.is-active { color: var(--bg); background: var(--ink); border-color: var(--ink); box-shadow: 0 2px 10px -3px rgba(230,237,246,.4); }
+
+/* Collapsible filter trigger — mobile only; the inline row stays on desktop.
+   .filter-options is display:contents on desktop so its buttons flow in the bar
+   exactly as before. */
+.filter-options { display: contents; }
+.filter-toggle { display: none; }
+.filter-toggle-value { color: var(--ink); font-weight: 700; }
+.filter-caret { color: var(--ink-faint); font-size: 11px; transition: transform var(--dur) var(--ease-out); }
+@media (max-width: 760px) {
+  .filters { position: relative; }
+  .filter-label { display: none; }
+  .filter-toggle {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+    appearance: none; cursor: pointer;
+    border: 1px solid var(--line); background: var(--panel); color: var(--ink-dim);
+    font: 600 13px/1 var(--sans); padding: 0 16px; border-radius: 999px;
+    transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+  }
+  .filter-toggle .filter-toggle-label { color: var(--ink-faint); font-weight: 600; }
+  .filter-toggle.is-filtered { border-color: var(--ink); }
+  .filter-options {
+    display: none; position: absolute; top: calc(100% + 6px);
+    left: clamp(16px, 5vw, 64px); z-index: 20;
+    flex-direction: column; gap: 6px; min-width: 220px;
+    padding: 8px; border-radius: 14px;
+    background: var(--panel-2); border: 1px solid var(--line); box-shadow: var(--shadow-card);
+  }
+  .filters.is-open .filter-options { display: flex; animation: menuDrop var(--dur) var(--ease-out); }
+  .filters.is-open .filter-caret { transform: rotate(180deg); }
+  .filter-options .filter-btn { width: 100%; justify-content: flex-start; text-align: left; }
+}
+@keyframes menuDrop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .filters.is-open .filter-options { animation: none; }
+  .filter-caret { transition: none; }
+}
 
 /* Acronym tooltips in the click summary */
 .gloss { text-decoration: none; border-bottom: 1px dotted var(--ink-faint);
@@ -536,8 +624,11 @@ body.years-page { display: flex; flex-direction: column; min-height: 100vh; }
     overflow-x: auto; overflow-y: visible;
     overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
     padding-bottom: 6px;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22px, #000 calc(100% - 22px), transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+    /* Edge fades are scroll-aware: --fade-l/--fade-r are set by years.js to 0
+       at whichever end is fully reached, so the first/last year never sits
+       dimmed or clipped under a static mask. */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 0px)), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 0px)), transparent 100%);
   }
   .years-chart { width: max-content; min-width: 100%; }
   .yr-col { flex: 0 0 auto; min-width: 32px; }
@@ -553,6 +644,7 @@ body.years-page { display: flex; flex-direction: column; min-height: 100vh; }
 /* Tighter phone pass: reclaim vertical space from the sticky header + gutters. */
 @media (max-width: 480px) {
   .site-header { padding: 16px 16px 13px; gap: 10px; }
+  .nav-burger { top: 12px; right: 16px; }
   .title-block h1 { font-size: clamp(19px, 6.4vw, 24px); }
   .tagline { font-size: 12px; }
   .header-actions { gap: 9px; width: 100%; }
