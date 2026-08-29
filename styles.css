@@ -473,6 +473,124 @@ body::before {
 .editorial strong { color: var(--ink); }
 .editorial em { font-style: normal; font-weight: 600; color: var(--ink); }
 
+/* ── People page ── */
+/* Era filter reuses .filter-btn, but not .filter-options: four chips wrap fine
+   on a phone, so this bar stays inline instead of collapsing to a dropdown. */
+.people-filters { padding: 10px clamp(16px, 5vw, 64px) 0; }
+
+.people { padding: 18px clamp(16px, 5vw, 64px) 64px; max-width: 1320px; }
+.people-count {
+  margin: 0 0 16px; font: 600 10px/1 var(--mono); letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+/* Rows stretch so the Wikipedia pill (margin-top:auto) bottom-aligns across a
+   row — bios vary a lot in length, and ragged card bottoms read as unfinished. */
+/* min() on the track floor and min-width:0 on the card both matter: the chips
+   set white-space:nowrap, and a grid item's automatic minimum would otherwise
+   size the column to the longest untruncated event title and overflow the page. */
+.people-grid {
+  display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+}
+
+.person-card {
+  position: relative; display: flex; flex-direction: column; min-width: 0;
+  padding: 20px 22px 18px; border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line-soft); box-shadow: var(--shadow-1);
+  transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out),
+              transform var(--dur) var(--ease-spring);
+}
+/* The era accent: a colored rule down the leading edge, echoing the spine dot. */
+.person-card::before {
+  content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px;
+  border-radius: 0 3px 3px 0; background: var(--c);
+  box-shadow: 0 0 14px -2px var(--c); opacity: .85;
+}
+.person-card:hover {
+  transform: translateY(-2px); border-color: #33415a; box-shadow: var(--shadow-2);
+}
+
+.person-era {
+  font: 600 9.5px/1 var(--mono); letter-spacing: .13em; text-transform: uppercase;
+  color: var(--c); opacity: .9; margin-bottom: 8px;
+}
+.person-name {
+  margin: 0 0 5px; font-size: 19px; line-height: 1.15; font-weight: 750;
+  letter-spacing: -.02em; color: #fff; text-wrap: balance;
+}
+.person-known {
+  margin: 0 0 12px; font: 500 12px/1.45 var(--mono); color: var(--ink-faint);
+  text-wrap: pretty;
+}
+.person-bio {
+  margin: 0 0 14px; font-size: 13.5px; line-height: 1.62; color: var(--ink-dim);
+  text-wrap: pretty;
+}
+/* "Where they are now" — set apart by a rule rather than a label, since for the
+   people who have died the line is a legacy note, not a current post. */
+.person-now {
+  margin: 0 0 14px; padding-top: 12px; border-top: 1px solid var(--line-soft);
+  font-size: 12.5px; line-height: 1.6; color: var(--ink-faint); text-wrap: pretty;
+}
+.person-now::before {
+  content: "▸ "; color: var(--c); font-size: 11px;
+}
+
+/* Milestone chips: this person's events, deep-linking into the timeline. */
+.person-events {
+  list-style: none; margin: 0 0 14px; padding: 0;
+  display: flex; flex-direction: column; gap: 5px; min-width: 0;
+}
+.person-event {
+  display: flex; align-items: baseline; gap: 9px; min-width: 0;
+  padding: 5px 10px; border-radius: 8px; text-decoration: none;
+  background: color-mix(in srgb, var(--c) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c) 22%, transparent);
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+.person-event:hover {
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+  border-color: color-mix(in srgb, var(--c) 46%, transparent);
+}
+.pe-year { flex-shrink: 0; font: 700 11px/1.5 var(--mono); color: var(--c); }
+.pe-title {
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 12px; line-height: 1.5; color: var(--ink-dim);
+}
+.person-event:hover .pe-title { color: var(--ink); }
+
+.person-wiki {
+  margin-top: auto; align-self: flex-start;
+  font: 600 11.5px/1 var(--sans); color: var(--ink-dim); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px;
+  transition: color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+              background var(--dur) var(--ease-out);
+}
+.person-wiki:hover { color: var(--ink); border-color: #3a4a63; background: rgba(255,255,255,.025); }
+.person-wiki.is-absent {
+  color: var(--ink-faint); border-style: dashed; border-color: var(--line-soft); opacity: .7;
+}
+.person-wiki.is-absent:hover { background: transparent; border-color: var(--line-soft); color: var(--ink-faint); }
+
+@media (max-width: 760px) {
+  .people-grid { grid-template-columns: 1fr; gap: 14px; }
+  .people { padding-top: 14px; }
+  .people-filters { padding-top: 8px; }
+  /* Match the rest of the mobile pass: full-height tap targets on the chips. */
+  .people-filters .filter-btn { min-height: 40px; }
+}
+@media (max-width: 480px) {
+  .people { padding: 12px 16px 40px; }
+  .people-filters { padding: 8px 16px 0; }
+  .person-card { padding: 16px 18px 15px; }
+  .person-name { font-size: 18px; }
+}
+@media (hover: none) {
+  .person-card:hover { transform: none; border-color: var(--line-soft); box-shadow: var(--shadow-1); }
+  .person-wiki:hover { background: transparent; border-color: var(--line); color: var(--ink-dim); }
+}
+
 /* ── By Year (horizontal) view ── */
 /* Page is a flex column so the chart can be anchored to the bottom while the
    click-summary panel sits at the top-left, above the timeline. */

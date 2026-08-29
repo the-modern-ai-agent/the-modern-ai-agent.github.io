@@ -65,9 +65,43 @@ for (const ev of events) {
   if (n > 1) errors.push(`event "${ev.id}" appears in ${n} brief nodes (must be exactly 1)`);
 }
 
+// People: the researcher bios behind people.html. `wikipedia` is deliberately
+// nullable — a few people genuinely have no article — but when present it must
+// be an en.wikipedia.org URL, so a typo can't ship as a dead link. Every
+// eventId must resolve, which keeps the "on this timeline" chips from rotting
+// silently when an event is renamed.
+const people = data.people ?? [];
+const PERSON_REQUIRED = ['id', 'name', 'era', 'knownFor', 'bio', 'now'];
+const personIds = new Set();
+
+for (const p of people) {
+  for (const f of PERSON_REQUIRED) {
+    if (p[f] == null || p[f] === '') errors.push(`person "${p.id ?? '?'}" missing "${f}"`);
+  }
+  if (!ERAS.has(p.era)) errors.push(`person "${p.id}" has bad era "${p.era}"`);
+  if (personIds.has(p.id)) errors.push(`duplicate person id "${p.id}"`);
+  personIds.add(p.id);
+
+  if (p.wikipedia != null) {
+    let host = null;
+    try { host = new URL(p.wikipedia).hostname; } catch { /* reported below */ }
+    if (host !== 'en.wikipedia.org') {
+      errors.push(`person "${p.id}" wikipedia must be an en.wikipedia.org URL or null (got "${p.wikipedia}")`);
+    }
+  }
+
+  if (!Array.isArray(p.eventIds)) {
+    errors.push(`person "${p.id}" needs an eventIds array (use [] for none)`);
+  } else {
+    for (const id of p.eventIds) {
+      if (!ids.has(id)) errors.push(`person "${p.id}" eventId "${id}" has no matching event`);
+    }
+  }
+}
+
 if (errors.length) {
   console.error(`FAIL: ${errors.length} problem(s) in data.json:`);
   for (const e of errors) console.error('  - ' + e);
   process.exit(1);
 }
-console.log(`OK: ${events.length} events, ${brief.length} brief nodes, all checks pass.`);
+console.log(`OK: ${events.length} events, ${brief.length} brief nodes, ${people.length} people, all checks pass.`);

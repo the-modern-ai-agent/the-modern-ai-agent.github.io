@@ -1855,5 +1855,277 @@
       "memberIds": ["ms-agent-framework-2026", "ucp-2026", "ms-agent-365-2026"],
       "link": { "label": "Microsoft", "url": "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-version-1-0/" }
     }
+  ],
+  "people": [
+    {
+      "id": "turing",
+      "name": "Alan Turing",
+      "era": "ai",
+      "knownFor": "The Turing Test · the universal machine · Bletchley Park",
+      "bio": "Turing formalised computation itself with the abstract machine that carries his name, then asked whether such a machine could think. His 1950 paper replaced that unanswerable question with an operational one — could a machine's written replies be told apart from a person's — and pre-emptively rebutted nine objections to the idea. He also sketched machine learning as education rather than programming, decades before anyone could build it.",
+      "now": "Died in 1954, aged 41. Both the Turing Test and computing's highest honour, the ACM A.M. Turing Award, carry his name.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Alan_Turing",
+      "eventIds": ["turing-1950"]
+    },
+    {
+      "id": "shannon",
+      "name": "Claude Shannon",
+      "era": "ai",
+      "knownFor": "Information theory · Dartmouth 1956 · machine chess",
+      "bio": "Shannon's 1948 theory of communication gave the bit its meaning and set hard limits on what any channel can carry — the mathematics every digital system, neural networks included, still runs on. He was one of the four organisers of the 1956 Dartmouth workshop that named the field, and built early game-playing machines and a maze-solving mechanical mouse to make the point that machines could adapt.",
+      "now": "Died in 2001. Information theory still underpins compression, coding, and much of how model capacity is reasoned about.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Claude_Shannon",
+      "eventIds": ["dartmouth-1956"]
+    },
+    {
+      "id": "mccarthy",
+      "name": "John McCarthy",
+      "era": "ai",
+      "knownFor": "Coined \"artificial intelligence\" · Lisp · Stanford AI Lab",
+      "bio": "McCarthy proposed the 1956 Dartmouth workshop and coined the term artificial intelligence in its funding application. He then invented Lisp, the language AI research ran on for thirty years, contributing garbage collection and early time-sharing along the way. His later work on formalising commonsense reasoning in logic defined the symbolic tradition that dominated the field's first three decades.",
+      "now": "Died in 2011. He spent most of his career at Stanford, where he founded the AI Laboratory (SAIL) in 1963.",
+      "wikipedia": "https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)",
+      "eventIds": ["dartmouth-1956"]
+    },
+    {
+      "id": "minsky",
+      "name": "Marvin Minsky",
+      "era": "ai",
+      "knownFor": "MIT AI Lab · Perceptrons · The Society of Mind",
+      "bio": "Minsky co-organised Dartmouth, co-founded the MIT AI Laboratory, and spent his career arguing that intelligence emerges from many simple, individually unintelligent processes — the thesis of his book The Society of Mind. His 1969 book with Seymour Papert proved sharp limits on single-layer perceptrons; the funding chill that followed helped bring on the first AI winter, though the book's actual claims were narrower than its reputation.",
+      "now": "Died in 2016, having taught at the MIT Media Lab for decades. Won the Turing Award in 1969.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Marvin_Minsky",
+      "eventIds": ["dartmouth-1956", "ai-winter-1969"]
+    },
+    {
+      "id": "rosenblatt",
+      "name": "Frank Rosenblatt",
+      "era": "ai",
+      "knownFor": "The perceptron · the Mark I Perceptron machine",
+      "bio": "A psychologist by training, Rosenblatt built the perceptron: a machine that adjusted its own weights from its errors rather than following rules a programmer had written. The Mark I Perceptron was physical hardware — motor-driven potentiometers wired to a 400-pixel camera — and it learned to classify shapes. The idea that a network could discover its own features is the direct ancestor of every model on this timeline.",
+      "now": "Died in a boating accident in 1971, aged 43, more than a decade before backpropagation vindicated the approach he started.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Frank_Rosenblatt",
+      "eventIds": ["perceptron-1958", "ai-winter-1969"]
+    },
+    {
+      "id": "weizenbaum",
+      "name": "Joseph Weizenbaum",
+      "era": "ai",
+      "knownFor": "ELIZA · Computer Power and Human Reason",
+      "bio": "Weizenbaum wrote ELIZA at MIT to demonstrate how shallow machine conversation really was — a script matching patterns and reflecting them back as questions. He was unsettled by how readily people confided in it, including his own secretary, who asked him to leave the room. He spent the rest of his career as one of the field's sharpest internal critics, arguing that some decisions should not be delegated to computers however capable they become.",
+      "now": "Died in 2008 in Berlin. The \"ELIZA effect\" — reading understanding into a system that has none — is named after his program.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Joseph_Weizenbaum",
+      "eventIds": ["eliza-1966"]
+    },
+    {
+      "id": "pearl",
+      "name": "Judea Pearl",
+      "era": "ai",
+      "knownFor": "Bayesian networks · causal inference · do-calculus",
+      "bio": "Pearl gave AI a rigorous way to reason under uncertainty, replacing ad-hoc certainty factors with Bayesian networks that propagate probabilities across a graph of dependencies. He then went further and built a formal calculus for causation, separating seeing from doing, and has argued ever since that systems which only fit correlations will never truly reason about interventions or counterfactuals.",
+      "now": "Professor emeritus at UCLA, where he directs the Cognitive Systems Laboratory. Won the Turing Award in 2011.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Judea_Pearl",
+      "eventIds": ["bayesnet-pearl-1988"]
+    },
+    {
+      "id": "hopfield",
+      "name": "John Hopfield",
+      "era": "ai",
+      "knownFor": "Hopfield networks · associative memory",
+      "bio": "A physicist by background, Hopfield showed that a network of symmetrically connected binary units settles into stable states that can be read as stored memories, and that its dynamics minimise an energy function borrowed from statistical physics. That framing pulled a generation of physicists into neural networks and made the field's revival in the 1980s possible.",
+      "now": "Professor emeritus at Princeton. Shared the 2024 Nobel Prize in Physics with Geoffrey Hinton for foundational work on neural networks.",
+      "wikipedia": "https://en.wikipedia.org/wiki/John_Hopfield",
+      "eventIds": ["hopfield-1982"]
+    },
+    {
+      "id": "hinton",
+      "name": "Geoffrey Hinton",
+      "era": "ai",
+      "knownFor": "Backpropagation · Boltzmann machines · AlexNet",
+      "bio": "Hinton co-authored the 1986 paper that made backpropagation practical for multi-layer networks, invented Boltzmann machines with Terry Sejnowski, and kept the connectionist programme alive through two decades when almost nobody funded it. In 2012 his students' AlexNet won ImageNet by a margin that ended the argument, and the deep learning era began in earnest.",
+      "now": "Emeritus professor at the University of Toronto. Left Google in 2023 to speak freely about AI risk. Won the Turing Award in 2018 and shared the 2024 Nobel Prize in Physics.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Geoffrey_Hinton",
+      "eventIds": ["boltzmann-1985", "backprop-1986", "alexnet-2012"]
+    },
+    {
+      "id": "lecun",
+      "name": "Yann LeCun",
+      "era": "ai",
+      "knownFor": "Convolutional networks · LeNet · world models",
+      "bio": "LeCun applied backpropagation to convolutional networks and built LeNet, which read handwritten digits well enough that US banks used it to process cheques through the 1990s. Weight sharing across space is the reason vision models work at all. He has since become the loudest senior sceptic of autoregressive language models, arguing that systems need world models and joint-embedding architectures to reason.",
+      "now": "Professor at NYU. Stepped down as Meta's chief AI scientist in 2025 to start a company building world models. Won the Turing Award in 2018.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Yann_LeCun",
+      "eventIds": ["cnn-lenet-1989", "lenet5-1998"]
+    },
+    {
+      "id": "bengio",
+      "name": "Yoshua Bengio",
+      "era": "ai",
+      "knownFor": "Neural language models · attention · AI safety",
+      "bio": "Bengio's group produced the neural probabilistic language model that first replaced n-grams with learned word vectors, and later the attention mechanism for translation that the Transformer would generalise and strip down. He also co-authored the original GAN paper. Since 2023 he has redirected much of his effort toward catastrophic-risk governance and independent evaluation.",
+      "now": "Professor at the Université de Montréal and scientific director of Mila. Chairs the International AI Safety Report and founded the nonprofit LawZero in 2025. Won the Turing Award in 2018.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Yoshua_Bengio",
+      "eventIds": ["seq2seq-attention-2014", "gan-2014"]
+    },
+    {
+      "id": "schmidhuber",
+      "name": "Jürgen Schmidhuber",
+      "era": "ai",
+      "knownFor": "LSTM · early meta-learning · credit assignment",
+      "bio": "With his student Sepp Hochreiter, Schmidhuber introduced Long Short-Term Memory, whose gated cells finally let recurrent networks carry information across hundreds of timesteps without the gradient vanishing. LSTMs ran speech recognition and machine translation for two decades before Transformers displaced them. He is also the field's most persistent historian, regularly arguing that credit for celebrated ideas belongs to earlier work.",
+      "now": "Directs the AI initiative at KAUST in Saudi Arabia and remains scientific director of IDSIA in Switzerland.",
+      "wikipedia": "https://en.wikipedia.org/wiki/J%C3%BCrgen_Schmidhuber",
+      "eventIds": ["lstm-1997"]
+    },
+    {
+      "id": "fei-fei-li",
+      "name": "Fei-Fei Li",
+      "era": "ai",
+      "knownFor": "ImageNet · human-centered AI · spatial intelligence",
+      "bio": "Li's insight was that the bottleneck in computer vision was data, not algorithms. ImageNet — fourteen million labelled images, assembled through crowdsourcing when that was still a novel idea — created the benchmark AlexNet won in 2012, and the deep learning era followed directly from that result. She has since focused on the human consequences of the technology and on models that understand three-dimensional space.",
+      "now": "Professor at Stanford and co-director of its Institute for Human-Centered AI. Co-founded World Labs in 2024 to build spatial-intelligence models.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Fei-Fei_Li",
+      "eventIds": ["alexnet-2012"]
+    },
+    {
+      "id": "sutton",
+      "name": "Richard Sutton",
+      "era": "ai",
+      "knownFor": "Temporal-difference learning · the RL textbook · The Bitter Lesson",
+      "bio": "Sutton developed temporal-difference learning, the idea that an agent can learn from the gap between successive predictions instead of waiting for a final outcome — the core of modern reinforcement learning. His textbook with Andrew Barto taught the field. His 2019 essay The Bitter Lesson argued that general methods which scale with computation beat hand-crafted knowledge every time, a claim the following decade repeatedly confirmed.",
+      "now": "Professor at the University of Alberta and a fellow at Amii. Shared the 2024 Turing Award with Andrew Barto.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Richard_S._Sutton",
+      "eventIds": ["rl-sutton-barto-1998", "td-gammon-1992"]
+    },
+    {
+      "id": "goodfellow",
+      "name": "Ian Goodfellow",
+      "era": "ai",
+      "knownFor": "Generative adversarial networks · adversarial examples",
+      "bio": "Goodfellow proposed pitting a generator against a discriminator so that the two improve by competing — a training scheme that produced the first convincingly photorealistic synthetic images and dominated generative modelling until diffusion arrived. He also showed that small, imperceptible perturbations can reliably fool classifiers, opening the study of adversarial robustness, and co-wrote the standard Deep Learning textbook.",
+      "now": "A research scientist at Google DeepMind, after earlier stints at OpenAI and Apple.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ian_Goodfellow",
+      "eventIds": ["gan-2014"]
+    },
+    {
+      "id": "mikolov",
+      "name": "Tomáš Mikolov",
+      "era": "llm",
+      "knownFor": "word2vec · fastText",
+      "bio": "Mikolov's word2vec showed that a very simple objective — predict a word from the words around it — yields vectors whose geometry encodes meaning, the famous king − man + woman ≈ queen result. It was cheap to train and immediately useful, which made distributed word representations standard practice and set up the pretraining ideas that followed.",
+      "now": "A senior researcher at the Czech Institute of Informatics, Robotics and Cybernetics in Prague.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Tom%C3%A1%C5%A1_Mikolov",
+      "eventIds": ["word2vec-2013"]
+    },
+    {
+      "id": "vaswani",
+      "name": "Ashish Vaswani",
+      "era": "llm",
+      "knownFor": "Attention Is All You Need · the Transformer",
+      "bio": "Vaswani was the lead author of the 2017 paper that discarded recurrence and convolution and kept only attention. The Transformer's parallelism is the reason models could be scaled at all: every position attends to every other in a single step, so training saturates modern accelerators instead of waiting on a sequence. Nearly every model in the later half of this timeline is a Transformer.",
+      "now": "Co-founded Adept AI, then Essential AI in 2023, where he is chief executive.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ashish_Vaswani",
+      "eventIds": ["transformers-2017"]
+    },
+    {
+      "id": "shazeer",
+      "name": "Noam Shazeer",
+      "era": "llm",
+      "knownFor": "Transformer co-author · mixture-of-experts · Character.AI",
+      "bio": "Shazeer co-authored the Transformer paper and wrote much of its original implementation, then pushed sparsely-gated mixture-of-experts layers — routing each token to a few specialised sub-networks — which is how frontier models now grow parameter count without a matching rise in compute per token. He left Google in 2021 to build Character.AI after the company declined to ship a chatbot he had prototyped.",
+      "now": "Returned to Google in 2024 when it licensed Character.AI's technology, and co-leads the Gemini models.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Noam_Shazeer",
+      "eventIds": ["transformers-2017", "moe-shazeer-2017"]
+    },
+    {
+      "id": "sutskever",
+      "name": "Ilya Sutskever",
+      "era": "llm",
+      "knownFor": "AlexNet · sequence-to-sequence · the GPT series",
+      "bio": "Sutskever co-authored AlexNet, then the sequence-to-sequence work that made neural machine translation viable, then served as a founder and chief scientist of OpenAI through the GPT line. His consistent bet — that scaling next-token prediction over enough data produces general capability — turned out to be the defining wager of the last decade.",
+      "now": "Co-founded Safe Superintelligence Inc. in 2024 after leaving OpenAI, and leads it as chief executive.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ilya_Sutskever",
+      "eventIds": ["alexnet-2012", "gpt2-2019"]
+    },
+    {
+      "id": "radford",
+      "name": "Alec Radford",
+      "era": "llm",
+      "knownFor": "GPT-1 and GPT-2 · CLIP · Whisper",
+      "bio": "Radford was first author on GPT and GPT-2, the papers that established generative pretraining and then showed an unsupervised language model performing tasks nobody had trained it for. He also led CLIP, which learned images and text into a shared space from web captions, and Whisper for speech recognition. Remarkably little of the modern stack is untouched by his work.",
+      "now": "Left OpenAI in early 2025 to pursue independent research.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Alec_Radford",
+      "eventIds": ["gpt1-2018", "gpt2-2019"]
+    },
+    {
+      "id": "devlin",
+      "name": "Jacob Devlin",
+      "era": "llm",
+      "knownFor": "BERT · masked language modelling",
+      "bio": "Devlin led BERT, which trained a Transformer to fill in masked words using context from both directions at once, then fine-tuned that single pretrained model to the top of nearly every language benchmark. It made \"pretrain once, fine-tune cheaply\" the default recipe, and for several years BERT and its descendants were what production NLP actually ran on.",
+      "now": "Works on large language models at Google DeepMind, after a brief period at OpenAI in 2023.",
+      "wikipedia": null,
+      "eventIds": ["bert-2018"]
+    },
+    {
+      "id": "christiano",
+      "name": "Paul Christiano",
+      "era": "llm",
+      "knownFor": "RLHF · alignment theory · dangerous-capability evaluations",
+      "bio": "Christiano's work on deep reinforcement learning from human preferences established the technique that turns a raw language model into an assistant: train a reward model on human comparisons, then optimise the policy against it. RLHF is much of what separates a next-token predictor from something worth talking to, and it underpins InstructGPT, ChatGPT, and everything since. He later founded the Alignment Research Center.",
+      "now": "Heads AI safety at the US Center for AI Standards and Innovation, the renamed AI Safety Institute.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Paul_Christiano",
+      "eventIds": ["instructgpt-rlhf-2022"]
+    },
+    {
+      "id": "karpathy",
+      "name": "Andrej Karpathy",
+      "era": "llm",
+      "knownFor": "Teaching deep learning · Tesla Autopilot · nanoGPT",
+      "bio": "Karpathy's influence runs less through single papers than through making the field legible to everyone else: Stanford's CS231n, the Zero to Hero lecture series, and minimal reference implementations like char-rnn, micrograd, and nanoGPT that a generation of engineers learned from. He led computer vision for Tesla Autopilot and had two stints at OpenAI, and coined \"vibe coding\" in 2025.",
+      "now": "Runs Eureka Labs, the AI-native education startup he founded in 2024.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Andrej_Karpathy",
+      "eventIds": []
+    },
+    {
+      "id": "hassabis",
+      "name": "Demis Hassabis",
+      "era": "agent",
+      "knownFor": "DeepMind · AlphaGo · AlphaFold · Gemini",
+      "bio": "A chess prodigy and games developer turned neuroscientist, Hassabis co-founded DeepMind in 2010 on the premise that solving intelligence would let you solve everything else. Under him the lab produced the Atari DQN agents, AlphaGo's defeat of Lee Sedol, and AlphaFold, which predicted protein structures accurately enough to change biology outright.",
+      "now": "Chief executive of Google DeepMind. Shared the 2024 Nobel Prize in Chemistry for AlphaFold and was knighted the same year.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Demis_Hassabis",
+      "eventIds": ["gemini-2023", "gemini-3-2025"]
+    },
+    {
+      "id": "amodei",
+      "name": "Dario Amodei",
+      "era": "agent",
+      "knownFor": "Scaling laws · GPT-3 · Anthropic",
+      "bio": "Amodei led the research behind GPT-2 and GPT-3 at OpenAI and was an early proponent of the view that capability follows predictably from scale. He left in 2021 with a group of colleagues to found Anthropic, on the bet that frontier capability work and safety research have to happen inside the same organisation, and has argued publicly for both rapid progress and serious regulation.",
+      "now": "Co-founder and chief executive of Anthropic.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Dario_Amodei",
+      "eventIds": ["gpt3-2020", "computer-use-2024", "claude-code-ga-2025"]
+    },
+    {
+      "id": "shunyu-yao",
+      "name": "Shunyu Yao",
+      "era": "agent",
+      "knownFor": "ReAct · Tree of Thoughts · SWE-bench",
+      "bio": "Yao's ReAct interleaved reasoning traces with tool calls so a model could think, act, observe, and revise — the loop nearly every agent framework now implements in some form. He followed it with Tree of Thoughts, which searches over deliberate reasoning branches, and co-authored SWE-bench, the benchmark that made agent progress on real software issues measurable rather than anecdotal.",
+      "now": "A researcher at OpenAI, after completing his PhD at Princeton in 2024.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Shunyu_Yao",
+      "eventIds": ["react-2022", "tree-of-thoughts-2023", "swe-bench-2024"]
+    },
+    {
+      "id": "jason-wei",
+      "name": "Jason Wei",
+      "era": "agent",
+      "knownFor": "Chain-of-thought prompting · emergent abilities · instruction tuning",
+      "bio": "Wei showed that simply asking a large model to work through its reasoning step by step unlocked arithmetic and commonsense performance no amount of direct prompting could reach — and that the trick only worked past a certain scale. That observation about emergence, together with his earlier work on instruction tuning, shaped both how models are prompted and how reasoning models were later trained.",
+      "now": "Works on reasoning models; previously at Google Brain, where the chain-of-thought work was done, and later at OpenAI.",
+      "wikipedia": null,
+      "eventIds": ["chain-of-thought-2022"]
+    }
   ]
 }

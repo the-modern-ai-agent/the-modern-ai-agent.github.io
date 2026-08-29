@@ -233,6 +233,26 @@ function setView(next) {
   }, 180);
 }
 
+// Deep link from the People page: index.html#<event-id> opens that milestone
+// pinned. Recap view may not contain the event as its own node, so a deep link
+// always forces Detailed — and clears any type filter that would hide it.
+function openFromHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const ev = id && DB.byId.get(id);
+  if (!ev) return;
+  if (view !== 'detailed' || typeFilter !== 'all') {
+    view = 'detailed';
+    typeFilter = 'all';
+    localStorage.setItem('timeline-view', view);
+    syncToggle();
+    syncFilterBar();
+    renderSpine();
+  }
+  pin(id, { ...ev, node: 'event' });
+  const el = document.querySelector(`.event[data-id="${CSS.escape(id)}"]`);
+  el?.scrollIntoView({ block: 'center', behavior: REDUCE ? 'auto' : 'smooth' });
+}
+
 async function init() {
   try {
     const res = await fetch('data.json');
@@ -245,6 +265,7 @@ async function init() {
     buildFilters();
     syncFilterBar();
     renderSpine();
+    openFromHash();
   } catch (err) {
     document.getElementById('spine').innerHTML =
       `<p class="load-error">Couldn't load the timeline data (${err.message}).<br/>
