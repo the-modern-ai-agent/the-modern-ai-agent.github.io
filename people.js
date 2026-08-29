@@ -30,6 +30,22 @@ function eventChip(id) {
     ><span class="pe-year">${esc(year)}</span><span class="pe-title">${esc(ev.title)}</span></a></li>`;
 }
 
+// Some people have no biography on Wikipedia but their work does (Gerganov →
+// Llama.cpp, Tri Dao → Mamba). Those links are still worth having, but the pill
+// must not imply it leads to a profile — so when the linked article isn't about
+// the person, name it. Surname match is the test: it tolerates the disambiguated
+// and middle-initial titles real biographies use ("John McCarthy (computer
+// scientist)", "Richard S. Sutton") without hand-maintaining a flag per person.
+function wikiPill(p) {
+  if (!p.wikipedia) return `<span class="person-wiki is-absent">No Wikipedia article</span>`;
+  const fold = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const title = decodeURIComponent((p.wikipedia.split('/wiki/')[1] ?? '')).replace(/_/g, ' ');
+  const surname = fold(p.name).split(/\s+/).pop();
+  const aboutPerson = surname && new RegExp(`\\b${surname}\\b`).test(fold(title));
+  const label = aboutPerson || !title ? 'Wikipedia ↗' : `Wikipedia: ${title} ↗`;
+  return `<a class="person-wiki" href="${esc(p.wikipedia)}" target="_blank" rel="noopener">${esc(label)}</a>`;
+}
+
 function personCard(p) {
   const chips = (p.eventIds ?? []).map(eventChip).join('');
   return `<article class="person-card" data-era="${p.era}" data-reveal style="--c: var(--era-${p.era})">
@@ -39,9 +55,7 @@ function personCard(p) {
       <p class="person-bio">${esc(p.bio)}</p>
       <p class="person-now">${esc(p.now)}</p>
       ${chips ? `<ul class="person-events" aria-label="Milestones on this timeline">${chips}</ul>` : ''}
-      ${p.wikipedia
-        ? `<a class="person-wiki" href="${esc(p.wikipedia)}" target="_blank" rel="noopener">Wikipedia ↗</a>`
-        : `<span class="person-wiki is-absent">No Wikipedia article</span>`}
+      ${wikiPill(p)}
     </article>`;
 }
 

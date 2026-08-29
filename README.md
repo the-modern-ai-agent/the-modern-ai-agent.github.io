@@ -52,7 +52,12 @@ The People page reads `people[]` from the same `data.json`. Each object has:
 - `now`: one line on where they are today. For people who have died this is a legacy note instead —
   the page renders both the same way and deliberately uses no "Now:" label, so either reads naturally.
 - `wikipedia`: an `en.wikipedia.org` URL, or `null` when no article exists (the card then shows a
-  muted "No Wikipedia article" instead of a link).
+  muted "No Wikipedia article" instead of a link). Some people have no biography but their work
+  does — Gerganov links to `Llama.cpp`, Tri Dao to `Mamba`. The pill names the article in that case
+  ("Wikipedia: Llama.cpp ↗") so it doesn't read as a profile link; `wikiPill()` in `people.js`
+  decides by matching the person's surname against the article title. **Check the article is
+  actually about the right person** — "Georgi Gerganov" on Wikipedia is a Bulgarian basketball
+  player, and the "Shunyu Yao" article does not clearly describe the ReAct author.
 - `eventIds`: ids of this person's milestones on the timeline, rendered as chips linking to
   `index.html#<event-id>`. Use `[]` for none. The validator checks every id resolves, so renaming an
   event surfaces as a failure rather than a dead chip. `app.js` reads that hash on load, forces
