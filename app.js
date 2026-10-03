@@ -235,22 +235,34 @@ function setView(next) {
 
 // Deep link from the People page: index.html#<event-id> opens that milestone
 // pinned. Recap view may not contain the event as its own node, so a deep link
-// always forces Detailed — and clears any type filter that would hide it.
+// always forces Detailed — and clears any type filter that would hide it. That
+// forced view is deliberately NOT persisted: following one chip shouldn't
+// change what the user sees on every later visit. Only setView() writes the key.
 function openFromHash() {
-  const id = decodeURIComponent(location.hash.slice(1));
+  let id;
+  // A fragment with a stray "%" makes decodeURIComponent throw. This runs after
+  // the spine is rendered, so letting it escape would replace a working page
+  // with init()'s "couldn't load the data" error.
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
   const ev = id && DB.byId.get(id);
-  if (!ev) return;
+  if (!ev) {
+    dismiss();            // hash cleared or points nowhere — drop any pin
+    return;
+  }
   if (view !== 'detailed' || typeFilter !== 'all') {
     view = 'detailed';
     typeFilter = 'all';
-    localStorage.setItem('timeline-view', view);
     syncToggle();
     syncFilterBar();
     renderSpine();
   }
+  // Scroll before pinning. On mobile the pinned card raises the bottom sheet,
+  // which sets `body { overflow: hidden }` — so a smooth scroll started after
+  // the pin gets stranded partway. Jump instantly there and animate elsewhere.
+  const locksScroll = matchMedia('(max-width: 760px)').matches;
+  document.querySelector(`.event[data-id="${CSS.escape(id)}"]`)
+    ?.scrollIntoView({ block: 'center', behavior: REDUCE || locksScroll ? 'auto' : 'smooth' });
   pin(id, { ...ev, node: 'event' });
-  const el = document.querySelector(`.event[data-id="${CSS.escape(id)}"]`);
-  el?.scrollIntoView({ block: 'center', behavior: REDUCE ? 'auto' : 'smooth' });
 }
 
 async function init() {
@@ -275,6 +287,10 @@ async function init() {
 
 document.querySelectorAll('.toggle-btn').forEach(b =>
   b.addEventListener('click', () => setView(b.dataset.view)));
+
+// Back/forward between deep links: the hash changes without a reload, so re-run
+// the opener (which clears the pin when the hash no longer names an event).
+window.addEventListener('hashchange', openFromHash);
 
 // Mobile bottom-sheet dismissal: tap the scrim or press Esc.
 installSheetScrim(dismiss);

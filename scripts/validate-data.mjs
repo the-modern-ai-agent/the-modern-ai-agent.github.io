@@ -74,6 +74,13 @@ const people = data.people ?? [];
 const PERSON_REQUIRED = ['id', 'name', 'era', 'knownFor', 'bio', 'now'];
 const personIds = new Set();
 
+// Report a mistyped people[] as a validation failure like everything else,
+// rather than dying with a "not iterable" stack trace from the loop below.
+if (!Array.isArray(people)) {
+  console.error('FAIL: data.json "people" must be an array.');
+  process.exit(1);
+}
+
 for (const p of people) {
   for (const f of PERSON_REQUIRED) {
     if (p[f] == null || p[f] === '') errors.push(`person "${p.id ?? '?'}" missing "${f}"`);
@@ -82,11 +89,17 @@ for (const p of people) {
   if (personIds.has(p.id)) errors.push(`duplicate person id "${p.id}"`);
   personIds.add(p.id);
 
+  // Check the scheme and the article path too, not just the host: people.js
+  // derives the pill's label from the /wiki/<title> segment, so a bare
+  // "https://en.wikipedia.org/" would render a confident "Wikipedia ↗" that
+  // leads to the homepage — exactly the dead link this is meant to catch.
   if (p.wikipedia != null) {
-    let host = null;
-    try { host = new URL(p.wikipedia).hostname; } catch { /* reported below */ }
-    if (host !== 'en.wikipedia.org') {
-      errors.push(`person "${p.id}" wikipedia must be an en.wikipedia.org URL or null (got "${p.wikipedia}")`);
+    let u = null;
+    try { u = new URL(p.wikipedia); } catch { /* reported below */ }
+    const ok = u && u.protocol === 'https:' && u.hostname === 'en.wikipedia.org'
+      && /^\/wiki\/[^/?#][^?#]*$/.test(u.pathname);
+    if (!ok) {
+      errors.push(`person "${p.id}" wikipedia must be https://en.wikipedia.org/wiki/<title> or null (got "${p.wikipedia}")`);
     }
   }
 

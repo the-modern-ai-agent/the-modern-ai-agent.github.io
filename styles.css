@@ -493,6 +493,13 @@ body::before {
   grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
 }
 
+/* Era accent colour comes from data-era, the same way .yr-chip and .ref-entry
+   resolve theirs — one mechanism per element rather than an inline style too.
+   A chip carries its own event's era, which may differ from the person's. */
+.person-card[data-era="ai"],    .person-event[data-era="ai"]    { --c: var(--era-ai); }
+.person-card[data-era="llm"],   .person-event[data-era="llm"]   { --c: var(--era-llm); }
+.person-card[data-era="agent"], .person-event[data-era="agent"] { --c: var(--era-agent); }
+
 .person-card {
   position: relative; display: flex; flex-direction: column; min-width: 0;
   padding: 20px 22px 18px; border-radius: var(--radius);
@@ -577,8 +584,19 @@ body::before {
   .people-grid { grid-template-columns: 1fr; gap: 14px; }
   .people { padding-top: 14px; }
   .people-filters { padding-top: 8px; }
-  /* Match the rest of the mobile pass: full-height tap targets on the chips. */
-  .people-filters .filter-btn { min-height: 40px; }
+  /* The era chips inherit the shared 44px .filter-btn floor — no rule here, as
+     anything more specific would silently undercut it. The "Era" caption is
+     restored because this bar has no .filter-toggle to carry the word instead. */
+  .people-filters .filter-label { display: inline; }
+  /* Same 44px floor for the two controls this page adds. The chip stays a
+     block-level flex row: as inline-flex it would shrink-wrap its nowrap title
+     instead of truncating it, and push the grid wider than the viewport. */
+  .person-event {
+    min-height: 44px; align-items: center; padding: 8px 10px;
+  }
+  .person-wiki {
+    min-height: 44px; display: inline-flex; align-items: center; padding: 10px 14px;
+  }
 }
 @media (max-width: 480px) {
   .people { padding: 12px 16px 40px; }

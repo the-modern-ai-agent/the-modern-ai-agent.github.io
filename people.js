@@ -26,7 +26,7 @@ function eventChip(id) {
   if (!ev) return '';                     // validator blocks this, but never render a dead chip
   const year = ev.yearLabel ?? ev.year ?? '';
   return `<li><a class="person-event" href="index.html#${encodeURIComponent(id)}"
-    style="--c: var(--era-${ev.era})" title="${esc(ev.title)}"
+    data-era="${esc(ev.era)}" title="${esc(ev.title)}"
     ><span class="pe-year">${esc(year)}</span><span class="pe-title">${esc(ev.title)}</span></a></li>`;
 }
 
@@ -36,19 +36,25 @@ function eventChip(id) {
 // the person, name it. Surname match is the test: it tolerates the disambiguated
 // and middle-initial titles real biographies use ("John McCarthy (computer
 // scientist)", "Richard S. Sutton") without hand-maintaining a flag per person.
+// The match compares split tokens rather than building a RegExp from the name,
+// which would throw on a surname containing a metacharacter.
 function wikiPill(p) {
   if (!p.wikipedia) return `<span class="person-wiki is-absent">No Wikipedia article</span>`;
   const fold = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const title = decodeURIComponent((p.wikipedia.split('/wiki/')[1] ?? '')).replace(/_/g, ' ');
+  // decodeURIComponent throws on a malformed escape in data this function
+  // doesn't control, and that throw would take down the whole grid.
+  let title = '';
+  try { title = decodeURIComponent(p.wikipedia.split('/wiki/')[1] ?? '').replace(/_/g, ' '); } catch { /* leave blank */ }
   const surname = fold(p.name).split(/\s+/).pop();
-  const aboutPerson = surname && new RegExp(`\\b${surname}\\b`).test(fold(title));
+  const titleWords = fold(title).split(/[^\p{L}\p{N}]+/u);
+  const aboutPerson = !!surname && titleWords.includes(surname);
   const label = aboutPerson || !title ? 'Wikipedia ↗' : `Wikipedia: ${title} ↗`;
   return `<a class="person-wiki" href="${esc(p.wikipedia)}" target="_blank" rel="noopener">${esc(label)}</a>`;
 }
 
 function personCard(p) {
   const chips = (p.eventIds ?? []).map(eventChip).join('');
-  return `<article class="person-card" data-era="${p.era}" data-reveal style="--c: var(--era-${p.era})">
+  return `<article class="person-card" data-era="${esc(p.era)}" data-reveal>
       <div class="person-era">${esc(ERA_NAME[p.era] ?? p.era)}</div>
       <h2 class="person-name">${esc(p.name)}</h2>
       <p class="person-known">${esc(p.knownFor)}</p>
@@ -102,9 +108,13 @@ async function init() {
     buildFilters();
     render();
   } catch (err) {
+    // Surface the real error: a render-time throw lands here too, and the
+    // file-protocol advice below would be a misdiagnosis of it.
+    console.error('people.js:', err);
     PEOPLE_EL.innerHTML =
-      '<p class="load-error">Could not load <code>data.json</code>. Serve this over http ' +
-      '(e.g. <code>python3 -m http.server</code>) rather than opening the file directly.</p>';
+      `<p class="load-error">Could not load the people data (${esc(err.message)}).<br/>` +
+      'If this page was opened directly from disk, serve it over http instead ' +
+      '— e.g. <code>python3 -m http.server</code>.</p>';
   }
 }
 
